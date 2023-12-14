@@ -1,24 +1,29 @@
 import './styles/style.scss'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import './styles/_reset.scss'
+import './styles/forms.scss'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
+  <form class="formBlock">
+    <div class="formBlock__head">
+        <div class="formBlock__title">Вход</div>
+        <div class="formBlock__box">
+            <div class="formBlock__field">
+                <input type="text" class="formBlock__fieldInput" placeholder="">
+                <div class="formBlock__fieldTitle">Логин</div>
+                <div class="formBlock__fieldError">Ошибка</div>
+            </div>
+            <div class="formBlock__field">
+                <input type="password" class="formBlock__fieldInput" placeholder="">
+                <div class="formBlock__fieldTitle">Пароль</div>
+                <div class="formBlock__fieldError">Ошибка</div>
+            </div>
+        </div>
     </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
+    <div class="formBlock__actions">
+        <div class="btnBlue formBlock__btn">Авторизоваться</div>
+        <a href="#" class="formBlock__link">Нет аккаунта?</a>
+    </div>
+  </form>
 `
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+
