@@ -1,0 +1,27 @@
+.profileItem {
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #EAEAEA;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profileName {
+    color: #1E1E1E;
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 13px; /* 100% */
+}
+
+.profileValue {
+    color: #999;
+    text-align: right;
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 13px; /* 100% */
+}

@@ -1,1 +1,5 @@
 export {LoginPage} from './login'
+export {RegistrationPage} from './registration'
+export {NotFoundPage} from './notFound'
+export {ServerErrorPage} from './serverError'
+export {ProfilePage} from './profile'
