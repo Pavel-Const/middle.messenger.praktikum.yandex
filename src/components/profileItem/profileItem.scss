@@ -24,4 +24,15 @@
     font-style: normal;
     font-weight: 500;
     line-height: 13px; /* 100% */
+    pointer-events: none;
+    &_edit{
+        pointer-events: visible;
+        width: 180px;
+        height: 23px;
+        border-radius: 5px;
+        border: 1px solid #3369F3;
+        text-align: start;
+        padding: 5px;
+        color: var(--text-color);
+    }
 }
