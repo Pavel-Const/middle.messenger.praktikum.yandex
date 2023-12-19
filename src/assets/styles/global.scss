@@ -160,5 +160,9 @@
             color: var(--error-color);
         }
     }
-
+    &__btn{
+        width: 280px;
+        height: 37px;
+        margin: 0 auto;
+    }
 }

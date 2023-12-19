@@ -9,6 +9,9 @@ const pages = {
     '404': [Pages.NotFoundPage, {test: '123'}],
     '500': [Pages.ServerErrorPage, {test: '123'}],
     'profile': [Pages.ProfilePage, {test: '123'}],
+    'edit-profile': [Pages.ProfileEditPage, {test: '123'}],
+    'change-password': [Pages.PasswordEditPage, {test: '123'}],
+    'chats': [Pages.ChatsPage, {test: '123'}],
 };
 
 Object.entries(Components).forEach(([name, component]) => {
