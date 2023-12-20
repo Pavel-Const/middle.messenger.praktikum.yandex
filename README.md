@@ -1,3 +1,4 @@
+
 ### Глянуть демку
 
 Ссылка из Netlify - https://merry-beignet-17f869.netlify.app
@@ -23,4 +24,6 @@
 - `yarn` — установка зависимостей,
 - `yarn dev` — запуск версии для разработчика,
 - `yarn start` — сборка иb запуск стабильной версии.
+
+ссылка на пул-реквест - https://github.com/Pavel-Const/middle.messenger.praktikum.yandex/pull/4
 
