@@ -5,7 +5,7 @@
     flex-direction: column;
 }
 .fieldTitle {
-    color: #999;
+    color: var(--text-secondary-color);
     font-size: 13px;
     font-style: normal;
     font-weight: 500;
@@ -18,7 +18,7 @@
 .fieldInput {
     width: 100%;
     border: none;
-    border-bottom: 1px solid #3369F3;
+    border-bottom: 1px solid #3369f3;
     background-color: transparent;
     color: var(--text-color);
     font-size: 13px;
@@ -26,10 +26,10 @@
     font-weight: 500;
     line-height: 13px; /* 100% */
     padding-bottom: 7px;
-    &::placeholder{
+    &::placeholder {
         color: var(--text-secondary-color);
     }
-    &:not(:placeholder-shown) + .fieldTitle{
+    &:not(:placeholder-shown) + .fieldTitle {
         font-size: 9px;
         top: -12px;
     }
@@ -40,7 +40,7 @@
 }
 .fieldError {
     margin-top: 7px;
-    color: #FF2F2F;
+    color: var(--error-color);
     font-size: 8px;
     font-style: normal;
     font-weight: 400;

@@ -10,7 +10,7 @@
 }
 
 .profileName {
-    color: #1E1E1E;
+    color: var(--text-color);
     font-family: Inter;
     font-size: 13px;
     font-style: normal;
@@ -19,7 +19,7 @@
 }
 
 .profileValue {
-    color: #999;
+    color: var(--text-secondary-color);
     text-align: right;
     font-family: Inter;
     font-size: 13px;

@@ -13,7 +13,7 @@
     }
 
     &__title {
-        color: #1e1e1e;
+        color: var(--text-color);
         text-align: center;
         font-size: 20px;
         font-style: normal;
@@ -46,8 +46,8 @@
         align-items: center;
         justify-content: center;
         width: 64px;
-        background-color: #FBFBFB;
-        border-right: 1px solid #eaeaea;
+        background-color: var(--gray-light-color);
+        border-right: 1px solid var(--gray-color);
 
         svg {
             cursor: pointer;
@@ -73,7 +73,7 @@
         width: 130px;
         height: 130px;
         border-radius: 50%;
-        background-color: #EFEFEF;
+        background-color: var(--gray-secondary-color);
         overflow: hidden;
         display: flex;
         align-items: center;
@@ -107,7 +107,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #FFF;
+        color: var(--white-color);
         text-align: center;
         font-family: Inter;
         font-size: 13px;
