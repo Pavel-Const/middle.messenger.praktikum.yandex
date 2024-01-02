@@ -1,0 +1,16 @@
+.buttonBlue {
+    border-radius: 8px;
+    background-color: var(--main-color);
+    width: 280px;
+    height: 37px;
+    color: var(--white-color);
+    font-family: Inter;
+    text-align: center;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 13px; /* 100% */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,21 @@
+<div class="formBlock">
+    {{#> Form }}
+        <div class="formBlock__head">
+            <div class="formBlock__title">Вход</div>
+            <div class="formBlock__box">
+                {{> Input type="text" label="Почта" errorText="Ошибка" name="email"}}
+                {{> Input type="text" label="Логин" errorText="Ошибка" name="login"}}
+                {{> Input type="text" label="Имя" errorText="Ошибка" name="first_name"}}
+                {{> Input type="text" label="Фамилия" errorText="Ошибка" name="second_name"}}
+                {{> Input type="number" label="Телефон" errorText="Ошибка" name="phone"}}
+                {{> Input type="password" label="Пароль" errorText="Ошибка" name="password"}}
+                {{> Input type="password" label="Пароль (еще раз)" errorText="Ошибка"}}
+            </div>
+        </div>
+        <div class="formBlock__actions">
+            {{> Button label="Зарегистрироваться"}}
+            {{> Link label="Войти" page="login"}}
+        </div>
+    {{/Form}}
+</div>
+ 

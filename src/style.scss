@@ -1,0 +1,47 @@
+@import 'src/components/buttonBlue/button';
+@import 'src/components/linkBlue/link';
+@import 'src/components/input/input';
+@import 'src/components/errorBlock/errorBlock';
+@import 'src/components/form/form';
+@import 'src/components/profileItem/profileItem';
+@import 'assets/styles/reset';
+@import 'assets/styles/global';
+@import 'assets/styles/fonts/inter.css';
+
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    --main-color: #3369f3;
+    --white-color: #fff;
+    --gray-light-color: #FBFBFB;
+    --gray-color: #eaeaea;
+    --gray-secondary-color: #EFEFEF;
+    --second-color: #e4edfd;
+    --error-color: #ff2f2f;
+    --text-color: #1e1e1e;
+    --text-secondary-color: #999;
+    --transition: 0.3s all;
+}
+
+#app {
+    height: 100%;
+}
+.linksList{
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    li{
+        cursor: pointer;
+        color: var(--main-color);
+        font-family: Inter;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 11px; /* 100% */
+    }
+}
