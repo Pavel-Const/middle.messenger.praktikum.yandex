@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     &:not(:last-child){
         border-bottom: 1px solid #EAEAEA;
     }
@@ -11,7 +12,6 @@
 
 .profileName {
     color: var(--text-color);
-    font-family: Inter;
     font-size: 13px;
     font-style: normal;
     font-weight: 500;
@@ -21,12 +21,12 @@
 .profileValue {
     color: var(--text-secondary-color);
     text-align: right;
-    font-family: Inter;
     font-size: 13px;
     font-style: normal;
     font-weight: 500;
     line-height: 13px; /* 100% */
     pointer-events: none;
+
     &_edit{
         pointer-events: visible;
         width: 180px;

@@ -1,0 +1,17 @@
+{
+  "extends": "airbnb",
+  // Здесь вы указываете, что наследуетесь от набора правил
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "max-len": [
+      2,
+      100
+    ],
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"],
+    "@typescript-eslint/no-unused-vars": 2
+  }
+}

@@ -1,2 +1,2 @@
-export { default as ProfileEditPage } from './profileEdit.hbs?raw';
+export { ProfileEditPage as default } from './profileEdit';
 

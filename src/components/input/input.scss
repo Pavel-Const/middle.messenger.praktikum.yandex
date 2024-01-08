@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
 }
+
 .fieldTitle {
     color: var(--text-secondary-color);
     font-size: 13px;
@@ -15,6 +16,7 @@
     top: 0;
     transition: 0.3s all;
 }
+
 .fieldInput {
     width: 100%;
     border: none;
@@ -26,18 +28,22 @@
     font-weight: 500;
     line-height: 13px; /* 100% */
     padding-bottom: 7px;
+
     &::placeholder {
         color: var(--text-secondary-color);
     }
+
     &:not(:placeholder-shown) + .fieldTitle {
         font-size: 9px;
         top: -12px;
     }
+
     &:focus + .fieldTitle {
         font-size: 9px;
         top: -12px;
     }
 }
+
 .fieldError {
     margin-top: 7px;
     color: var(--error-color);

@@ -1,13 +1,13 @@
 .form{
     border-radius: 12px;
     background: var(--white-color);
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
     padding: 50px 30px 30px;
     min-height: 450px;
-    width: 340px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 340px;
     align-items: center;
     gap: 47px;
 }

@@ -5,10 +5,10 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+
     &__title {
         color: var(--text-color);
         text-align: center;
-        font-family: Inter;
         font-size: 40px;
         font-style: normal;
         font-weight: 500;
@@ -18,13 +18,13 @@
     &__message {
         color: var(--text-color);
         text-align: center;
-        font-family: Inter;
         font-size: 20px;
         font-style: normal;
         font-weight: 500;
         line-height: 20px; /* 100% */
         margin-top: 20px;
     }
+
     &__link{
         margin-top: 70px;
     }

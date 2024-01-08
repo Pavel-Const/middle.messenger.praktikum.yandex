@@ -1,38 +1,39 @@
 import Handlebars from 'handlebars';
 import * as Components from './components';
-import * as Pages from './pages';
+import { registerComponent } from './core/registerComponent.ts';
+import { navigate } from './core/navigate';
 
+/*Object.entries(Components).forEach(([ name, component ]) => {
+  if(['Input', 'Button'].includes(name)) {
+    registerComponent(name, component);
+    return;
+  }
+  Handlebars.registerPartial(name, component);
 
-const pages = {
-    'login': [Pages.LoginPage, {test: '123'}],
-    'registration': [Pages.RegistrationPage, {test: '123'}],
-    '404': [Pages.NotFoundPage, {test: '123'}],
-    '500': [Pages.ServerErrorPage, {test: '123'}],
-    'profile': [Pages.ProfilePage, {test: '123'}],
-    'edit-profile': [Pages.ProfileEditPage, {test: '123'}],
-    'change-password': [Pages.PasswordEditPage, {test: '123'}],
-    'chats': [Pages.ChatsPage, {test: '123'}],
-};
+});*/
 
-Object.entries(Components).forEach(([name, component]) => {
-    Handlebars.registerPartial(name, component);
-});
+Handlebars.registerPartial('Form', Components.Form);
 
-function navigate(page: string) {
-    //@ts-ignore
-    const [source, context] = pages[page];
-    const container = document.getElementById('app')!;
-    container.innerHTML = Handlebars.compile(source)(context);
-}
+registerComponent('Button', Components.Button);
+registerComponent('InputField', Components.InputField);
+registerComponent('Input', Components.Input);
+registerComponent('ErrorValid', Components.ErrorValid);
+registerComponent('Link', Components.Link);
+registerComponent('ErrorBlock', Components.ErrorBlock);
+registerComponent('ProfileItem', Components.ProfileItem);
+registerComponent('ProfileInput', Components.ProfileInput);
+registerComponent('ChatItem', Components.ChatItem);
+registerComponent('MessageItem', Components.MessageItem);
+
 
 document.addEventListener('DOMContentLoaded', () => navigate('login'));
 
 document.addEventListener('click', e => {
-    //@ts-ignore
-    const page = e.target.getAttribute('page');
-    if (page) {
-        navigate(page);
-        e.preventDefault();
-        e.stopImmediatePropagation();
-    }
+  //@ts-ignore
+  const page = e.target.getAttribute('page');
+  if (page) {
+    navigate(page);
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
 });

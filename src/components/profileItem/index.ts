@@ -1,1 +1,3 @@
-export { default as ProfileItem } from './profileItem.hbs?raw';
+import './profileItem.scss';
+
+export { ProfileItem } from './profileItem';
