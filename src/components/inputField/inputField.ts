@@ -7,6 +7,7 @@ interface IProps {
   label: string
 }
 
+
 export class InputField extends Block {
 
   constructor(props: IProps) {
@@ -16,7 +17,7 @@ export class InputField extends Block {
     });
   }
 
-  public value() {
+  value() {
     if (!this.validate()) {
       return null;
     }

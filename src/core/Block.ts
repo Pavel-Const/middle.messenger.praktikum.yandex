@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 
 // Нельзя создавать экземпляр данного класса
-class Block {
+class Block<Ref = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -13,8 +13,8 @@ class Block {
 
   public id = nanoid(6);
   protected props: any;
-  protected refs: Record<string, Block> = {};
-  public children: Record<string, Block>;
+  protected refs: Record<string, Block<Ref>> = {};
+  public children: Record<string, Block<Ref>>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
   // @ts-ignore
@@ -214,7 +214,6 @@ class Block {
   hide() {
     this.getContent()!.style.display = 'none';
   }
-
 
 }
 

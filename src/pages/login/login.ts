@@ -1,20 +1,26 @@
 import Block from '../../core/Block';
 import * as validators from '../../utils/validators';
 
-export class LoginPage extends Block {
+type Ref = {
+    password: {
+        value: () => string
+    },
+    login: {
+        value: () => string
+    }
+}
+
+export class LoginPage extends Block<Ref> {
     constructor() {
         super({
             validate: {
                 login: validators.login,
                 password: validators.password
             },
-            onLogin: (event: MouseEvent) => {
+            onLogin: (event: Event) => {
                 event.preventDefault();
-             /*    const login = this.refs.login.value();
-                const password = this.refs.password.value(); */
-
-                const login = this.refs.login.element?.querySelector('input')?.value;
-                const password = this.refs.password.element?.querySelector('input')?.value;
+                const login:string = this.refs.login.value();
+                const password = this.refs.password.value();
                 console.log({
                     login,
                     password
