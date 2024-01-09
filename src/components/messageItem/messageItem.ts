@@ -4,22 +4,15 @@ import button from "./button.hbs?raw";
 */
 
 interface IProps {
-    name: string,
+    text: string,
     time: string,
-    count: string,
-    my: boolean
 }
 
-export class MessageItem extends Block {
+export class MessageItem extends Block<IProps> {
     constructor(props: IProps) {
         super(props);
     }
-
-    protected init(): void {
-        this.props.events = {
-            click: this.props.onClick
-        }
-    }
+    
 
     protected render(): string {
         const { text, time } = this.props;

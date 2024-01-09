@@ -1,7 +1,26 @@
 import Block from '../../core/Block';
 import * as validators from '../../utils/validators';
+import { ProfileItem } from '../../components';
 
-export class ProfileEditPage extends Block {
+interface Props {
+  validate: {
+    login: (value: string) => boolean | string
+  },
+  onReg: (e: Event) => void,
+}
+
+type Refs = {
+  login: ProfileItem,
+  password: ProfileItem,
+  email: ProfileItem,
+  first_name: ProfileItem,
+  second_name: ProfileItem,
+  phone: ProfileItem,
+  repeatPassword: ProfileItem,
+  display_name: ProfileItem,
+}
+
+export class ProfileEditPage extends Block<Props, Refs> {
   constructor() {
     super({
       validate: {

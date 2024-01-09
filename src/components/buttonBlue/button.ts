@@ -4,24 +4,27 @@ import Block from '../../core/Block';
 import button from "./button.hbs?raw";
 */
 
-interface IProps {
+interface Props {
   className?: string,
   label: string,
+  type: string,
   page?: string,
-  onClick?: () => void
+  onClick: () => void,
+  events: { click: (e: Event) => void },
 }
 
-export class Button extends Block {
-  constructor(props: IProps) {
+
+export class Button extends Block<Props> {
+  constructor(props: Props) {
     super(props);
   }
-
+  
   protected init(): void {
     this.props.events = {
       click: this.props.onClick
     };
   }
-
+  
   protected render(): string {
     const {
       className,

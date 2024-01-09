@@ -1,7 +1,20 @@
 import Block from '../../core/Block';
 import * as validators from '../../utils/validators';
+import { ProfileItem } from '../../components';
 
-export class PasswordEditPage extends Block {
+interface Props {
+    validate: {
+        login: (value: string) => boolean | string
+    },
+    onSave: (e: Event) => void,
+}
+
+type Refs = {
+    oldPassword: ProfileItem,
+    newPassword: ProfileItem,
+    repeatPassword: ProfileItem,
+}
+export class PasswordEditPage extends Block<Props, Refs> {
     constructor() {
         super({
             validate: {

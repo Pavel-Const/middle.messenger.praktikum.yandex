@@ -1,16 +1,20 @@
 import Block from '../../core/Block';
 import * as validators from '../../utils/validators';
+import { InputField } from '../../components';
 
-type Ref = {
-    password: {
-        value: () => string
+interface Props {
+    validate: {
+        login: (value: string) => boolean | string
     },
-    login: {
-        value: () => string
-    }
+    onLogin: (e: Event) => void,
 }
 
-export class LoginPage extends Block<Ref> {
+type Refs = {
+    login: InputField,
+    password: InputField,
+}
+
+export class LoginPage extends Block<Props, Refs> {
     constructor() {
         super({
             validate: {
@@ -19,12 +23,13 @@ export class LoginPage extends Block<Ref> {
             },
             onLogin: (event: Event) => {
                 event.preventDefault();
-                const login:string = this.refs.login.value();
+                const login = this.refs.login.value();
                 const password = this.refs.password.value();
                 console.log({
                     login,
                     password
                 });
+                console.log(login);
             },
         });
     }

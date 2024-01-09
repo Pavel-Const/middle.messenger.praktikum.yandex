@@ -2,8 +2,11 @@ import EventBus from './EventBus';
 import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 
-// Нельзя создавать экземпляр данного класса
-class Block<Ref = any> {
+export type RefType = {
+  [key: string]: Element | Block<object>
+}
+
+class Block<Props extends object, Refs extends RefType = RefType> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -12,9 +15,9 @@ class Block<Ref = any> {
   };
 
   public id = nanoid(6);
-  protected props: any;
-  protected refs: Record<string, Block<Ref>> = {};
-  public children: Record<string, Block<Ref>>;
+  protected props: Props;
+  protected refs: Refs = {} as Refs;
+  public children: Record<string, Block<Refs>> = {};
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
   // @ts-ignore
@@ -44,7 +47,7 @@ class Block<Ref = any> {
 
   _getChildrenAndProps(childrenAndProps: any) {
     const props: Record<string, any> = {};
-    const children: Record<string, Block> = {};
+    const children: Record<string, Block<Refs>> = {};
 
     Object.entries(childrenAndProps)
       .forEach(([key, value]) => {

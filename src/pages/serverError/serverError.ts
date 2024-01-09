@@ -1,6 +1,6 @@
 import Block from '../../core/Block';
 
-export class ServerErrorPage extends Block {
+export class ServerErrorPage extends Block<{}> {
     constructor() {
         super({});
     }

@@ -1,16 +1,20 @@
 import Block from '../../core/Block';
+import { ProfileInput } from '../profileInput';
 
-interface IProps {
+interface Props {
   label: string,
   edit: boolean,
   value: string,
   name: string,
   type: string,
-
+  validate?: (value: string) => false | string
+}
+type Refs = {
+  input: ProfileInput,
 }
 
-export class ProfileItem extends Block {
-  constructor(props: IProps) {
+export class ProfileItem extends Block<Props, Refs> {
+  constructor(props: Props) {
     super({
       ...props,
       onBlur: () => this.validate()

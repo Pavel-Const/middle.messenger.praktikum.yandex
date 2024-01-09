@@ -1,16 +1,23 @@
 import Block from '../../core/Block';
+import { ErrorValid } from '../errorValid';
+import { Input } from '../input';
 
-interface IProps {
+interface Props {
   onBlur: () => void;
   type: string,
   name: string,
-  label: string
+  label: string,
+  validate?: (value: string) => false | string
 }
 
+type Refs = {
+  input: Input,
+  error: ErrorValid,
+}
 
-export class InputField extends Block {
+export class InputField extends Block<Props, Refs> {
 
-  constructor(props: IProps) {
+  constructor(props: Props) {
     super({
       ...props,
       onBlur: () => this.validate()

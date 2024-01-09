@@ -1,8 +1,18 @@
 import Block from '../../core/Block';
-import { navigate } from '../../core/navigate';
 import * as validators from '../../utils/validators';
+import { InputField } from '../../components';
 
-export class ChatsPage extends Block {
+interface Props {
+    validate: {
+        login: (value: string) => boolean | string
+    },
+    onReg: (e: Event) => void,
+}
+
+type Refs = {
+    message: InputField,
+}
+export class ChatsPage extends Block<Props, Refs> {
     constructor() {
         super({
             validate: {

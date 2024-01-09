@@ -4,19 +4,13 @@ interface IProps {
     className?: string,
     label: string,
     page: string,
-    onClick?: () => void
 }
 
-export class Link extends Block {
+export class Link extends Block<IProps> {
     constructor(props: IProps) {
         super(props);
     }
-
-    protected init(): void {
-        this.props.events = {
-            click: this.props.onClick
-        }
-    }
+    
 
     protected render(): string {
         const { className, label, page } = this.props;

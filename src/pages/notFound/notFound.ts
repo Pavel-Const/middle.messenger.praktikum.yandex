@@ -1,6 +1,7 @@
 import Block from '../../core/Block';
 
-export class NotFoundPage extends Block {
+
+export class NotFoundPage extends Block<{}> {
     constructor() {
         super({});
     }

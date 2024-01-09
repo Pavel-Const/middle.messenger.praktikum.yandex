@@ -1,14 +1,16 @@
 import Block from '../../core/Block';
 
-interface IProps {
+interface Props {
     onBlur: () => void;
     type: string,
     name: string,
     label: string
 }
-
-export class Input extends Block {
-    constructor(props: IProps) {
+type Refs = {
+    input: HTMLInputElement,
+}
+export class Input extends Block<Props, Refs> {
+    constructor(props: Props) {
         super({
             ...props,
             events: {

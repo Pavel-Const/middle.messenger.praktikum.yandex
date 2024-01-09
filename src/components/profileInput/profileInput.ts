@@ -1,17 +1,20 @@
 import Block from '../../core/Block';
 
-interface IProps {
-  label: string,
+interface Props {
   edit: boolean,
   value: string,
   name: string,
   type: string,
+  error: string,
   onBlur: () => void;
 }
 
-export class ProfileInput extends Block {
+type Refs = {
+  input: HTMLInputElement,
+}
+export class ProfileInput extends Block<Props, Refs> {
 
-  constructor(props: IProps) {
+  constructor(props: Props) {
     super({
       ...props,
       events: {

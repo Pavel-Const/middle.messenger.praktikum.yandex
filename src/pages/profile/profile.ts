@@ -1,9 +1,5 @@
 import Block from '../../core/Block';
-export class ProfilePage extends Block {
-    constructor() {
-        super({
-        });
-    }
+export class ProfilePage extends Block<{}> {
 
     protected render(): string {
         return (`

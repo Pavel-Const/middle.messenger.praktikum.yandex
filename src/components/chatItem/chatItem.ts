@@ -7,20 +7,16 @@ interface IProps {
     name: string,
     time: string,
     count: string,
-    my: boolean
+    my: boolean,
+    last: string
 }
 
-export class ChatItem extends Block {
+
+export class ChatItem extends Block<IProps> {
     constructor(props: IProps) {
         super(props);
     }
-
-    protected init(): void {
-        this.props.events = {
-            click: this.props.onClick
-        }
-    }
-
+    
     protected render(): string {
         const { name, time, count, my, last } = this.props;
         return (`
