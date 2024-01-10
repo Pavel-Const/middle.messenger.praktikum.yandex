@@ -1,5 +1,5 @@
-import Block from '../../core/Block';
-import { ProfileInput } from '../profileInput';
+import Block from "../../core/Block";
+import { ProfileInput } from "../profileInput";
 
 interface Props {
   label: string,
@@ -34,19 +34,31 @@ export class ProfileItem extends Block<Props, Refs> {
 
     if (error) {
       this.refs.input.setProps({
-          edit: true, name: "", onBlur(): void {
-          }, type: "", error, value });
+        edit: true,
+        name: "",
+        onBlur(): void {
+        },
+        type: "",
+        error,
+        value
+      });
       return false;
     }
     this.refs.input.setProps({
-        edit: true, name: "", onBlur(): void {
-        }, type: "", error: '', value });
+      edit: true,
+      name: "",
+      onBlur(): void {
+      },
+      type: "",
+      error: "",
+      value
+    });
     return true;
   }
 
   protected render(): string {
     const {
-      label,
+      label
     } = this.props;
     return (`
             <li class="profileItem">

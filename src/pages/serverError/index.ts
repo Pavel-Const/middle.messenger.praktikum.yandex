@@ -1,2 +1,1 @@
-export { ServerErrorPage as default  } from './serverError';
-
+export { ServerErrorPage as default } from "./serverError";

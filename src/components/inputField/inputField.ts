@@ -1,6 +1,6 @@
-import Block from '../../core/Block';
-import { ErrorValid } from '../errorValid';
-import { Input } from '../input';
+import Block from "../../core/Block";
+import { ErrorValid } from "../errorValid";
+import { Input } from "../input";
 
 interface Props {
   onBlur: () => void;
@@ -16,7 +16,6 @@ type Refs = {
 }
 
 export class InputField extends Block<Props, Refs> {
-
   constructor(props: Props) {
     super({
       ...props,
@@ -39,13 +38,13 @@ export class InputField extends Block<Props, Refs> {
       this.refs.error.setProps({ error });
       return false;
     }
-    this.refs.error.setProps({ error: '' });
+    this.refs.error.setProps({ error: "" });
     return true;
   }
 
   protected render(): string {
     const {
-      label,
+      label
     } = this.props;
     return (`
       <label class="field">

@@ -1,8 +1,7 @@
-import Block from '../../core/Block';
+import Block from "../../core/Block";
 export class ProfilePage extends Block<{}> {
-
-    protected render(): string {
-        return (`
+  protected render(): string {
+    return (`
             <div class="profile">
                 <div class="profile__back">
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" page="login">
@@ -35,5 +34,5 @@ export class ProfilePage extends Block<{}> {
                 </div>
             </div>
         `);
-    }
+  }
 }

@@ -1,13 +1,13 @@
-import Block from '../../core/Block';
+import Block from "../../core/Block";
 
 export class ServerErrorPage extends Block<{}> {
-    constructor() {
-        super({});
-    }
+  constructor() {
+    super({});
+  }
 
-    protected render(): string {
-        return (`
+  protected render(): string {
+    return (`
                 {{{ErrorBlock title="500" description="Мы уже фиксим"}}}          
         `);
-    }
+  }
 }

@@ -1,60 +1,58 @@
-import Block from '../../core/Block';
-import * as validators from '../../utils/validators';
-import { InputField } from '../../components';
+import Block from "../../core/Block";
+import * as validators from "../../utils/validators";
+import { InputField } from "../../components";
 
 interface Props {
-	validate: {
-		login: (value: string) => boolean | string
-	},
-	onReg: (e: Event) => void,
+  validate: {
+    login: (value: string) => boolean | string
+  },
+  onReg: (e: Event) => void,
 }
 
 type Refs = {
-	login: InputField,
-	password: InputField,
-	email: InputField,
-	first_name: InputField,
-	second_name: InputField,
-	phone: InputField,
-	repeatPassword: InputField
+  login: InputField,
+  password: InputField,
+  email: InputField,
+  first_name: InputField,
+  second_name: InputField,
+  phone: InputField,
+  repeatPassword: InputField
 }
 
 export class RegistrationPage extends Block<Props, Refs> {
-	constructor() {
-		super({
-			validate: {
-				login: validators.login,
-				email: validators.email,
-				names: validators.names,
-				password: validators.password,
-				phone: validators.phone
-			},
-			onReg: (event: Event) => {
-				event.preventDefault();
-				const login = this.refs.login.value();
-				const password = this.refs.password.value();
-				const email = this.refs.email.value();
-				const first_name = this.refs.first_name.value();
-				const second_name = this.refs.second_name.value();
-				const phone = this.refs.phone.value();
-				const repeatPassword = this.refs.repeatPassword.value();
-				
-				console.log({
-					login,
-					password,
-					email,
-					first_name,
-					second_name,
-					phone,
-					repeatPassword
-				});
-				
-			}
-		});
-	}
-	
-	protected render(): string {
-		return (`
+  constructor() {
+    super({
+      validate: {
+        login: validators.login,
+        email: validators.email,
+        names: validators.names,
+        password: validators.password,
+        phone: validators.phone
+      },
+      onReg: (event: Event) => {
+        event.preventDefault();
+        const login = this.refs.login.value();
+        const password = this.refs.password.value();
+        const email = this.refs.email.value();
+        const first_name = this.refs.first_name.value();
+        const second_name = this.refs.second_name.value();
+        const phone = this.refs.phone.value();
+        const repeatPassword = this.refs.repeatPassword.value();
+        console.log({
+          login,
+          password,
+          email,
+          first_name,
+          second_name,
+          phone,
+          repeatPassword
+        });
+      }
+    });
+  }
+
+  protected render(): string {
+    return (`
             <div class="formBlock">
                 {{#> Form }}
                     <div class="formBlock__head">
@@ -76,5 +74,5 @@ export class RegistrationPage extends Block<Props, Refs> {
                 {{/Form}}
             </div>
         `);
-	}
+  }
 }

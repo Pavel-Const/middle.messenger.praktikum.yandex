@@ -1,1 +1,1 @@
-export { PasswordEditPage as default } from './passwordEdit';
+export { PasswordEditPage as default } from "./passwordEdit";

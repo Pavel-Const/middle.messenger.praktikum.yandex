@@ -1,29 +1,30 @@
 import Block from "../../core/Block";
 
 interface IProps {
-    name: string,
-    time: string,
-    count: string,
-    my: boolean,
-    last: string
+  name: string,
+  time: string,
+  count: string,
+  my: boolean,
+  last: string
 }
 
-
 export class ChatItem extends Block<IProps> {
-    constructor(props: IProps) {
-        super(props);
-    }
-    
-    protected render(): string {
-        const { name, time, count, my, last } = this.props;
-        return (`
+  constructor(props: IProps) {
+    super(props);
+  }
+
+  protected render(): string {
+    const {
+      name, time, count, my, last
+    } = this.props;
+    return (`
             <div class="chatItem">
                 <div class="chatItem__box">
                     <div class="chatItem__ava">
                     </div>
                     <div class="chatItem__info">
                         <div class="chatItem__name">${name}</div>
-                        <div class="chatItem__last">${my ? '<span>Вы:</span>' : '' }${last}</div>
+                        <div class="chatItem__last">${my ? "<span>Вы:</span>" : ""}${last}</div>
                     </div>
                 </div>
                 <div class="chatItem__add">
@@ -31,6 +32,6 @@ export class ChatItem extends Block<IProps> {
                     <div class="chatItem__counter">${count}</div>
                 </div>
             </div>
-        `)
-    }
+        `);
+  }
 }

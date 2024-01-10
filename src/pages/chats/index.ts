@@ -1,2 +1,1 @@
-export { ChatsPage as default } from './chats';
-
+export { ChatsPage as default } from "./chats";

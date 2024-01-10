@@ -1,3 +1,3 @@
-import './errorBlock.scss'
+import "./errorBlock.scss";
 
-export { ErrorBlock } from './errorBlock.ts';
+export { ErrorBlock } from "./errorBlock.ts";

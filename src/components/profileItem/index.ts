@@ -1,3 +1,3 @@
-import './profileItem.scss';
+import "./profileItem.scss";
 
-export { ProfileItem } from './profileItem';
+export { ProfileItem } from "./profileItem";

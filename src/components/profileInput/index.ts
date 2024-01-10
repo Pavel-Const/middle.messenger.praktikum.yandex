@@ -1,3 +1,3 @@
-import './profileInput.scss';
+import "./profileInput.scss";
 
-export { ProfileInput } from './profileInput.ts';
+export { ProfileInput } from "./profileInput.ts";

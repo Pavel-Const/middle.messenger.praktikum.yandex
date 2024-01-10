@@ -1,6 +1,6 @@
-import Block from '../../core/Block';
-import * as validators from '../../utils/validators';
-import { InputField } from '../../components';
+import Block from "../../core/Block";
+import * as validators from "../../utils/validators";
+import { InputField } from "../../components";
 
 interface Props {
     validate: {
@@ -15,27 +15,27 @@ type Refs = {
 }
 
 export class LoginPage extends Block<Props, Refs> {
-    constructor() {
-        super({
-            validate: {
-                login: validators.login,
-                password: validators.password
-            },
-            onLogin: (event: Event) => {
-                event.preventDefault();
-                const login = this.refs.login.value();
-                const password = this.refs.password.value();
-                console.log({
-                    login,
-                    password
-                });
-                console.log(login);
-            },
+  constructor() {
+    super({
+      validate: {
+        login: validators.login,
+        password: validators.password
+      },
+      onLogin: (event: Event) => {
+        event.preventDefault();
+        const login = this.refs.login.value();
+        const password = this.refs.password.value();
+        console.log({
+          login,
+          password
         });
-    }
+        console.log(login);
+      }
+    });
+  }
 
-    protected render(): string {
-        return (`
+  protected render(): string {
+    return (`
             <div class="formBlock">
                 {{#> Form }}
                     <div class="formBlock__head">
@@ -52,5 +52,5 @@ export class LoginPage extends Block<Props, Refs> {
                 {{/Form}}
             </div>
         `);
-    }
+  }
 }

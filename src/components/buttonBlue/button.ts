@@ -1,4 +1,4 @@
-import Block from '../../core/Block';
+import Block from "../../core/Block";
 
 interface Props {
   className?: string,
@@ -13,13 +13,13 @@ export class Button extends Block<Props> {
   constructor(props: Props) {
     super(props);
   }
-  
+
   protected init(): void {
     this.props.events = {
       click: this.props.onClick
     };
   }
-  
+
   protected render(): string {
     const {
       className,
@@ -28,9 +28,9 @@ export class Button extends Block<Props> {
       type
     } = this.props;
     return (`
-            <button type="button" class="buttonBlue ${className ? className : ''}" ${page ? `page="${page}"` : ''}>
+            <button type="button" class="buttonBlue ${className || ""}" ${page ? `page="${page}"` : ""}>
                 ${label}
-                ${type ? '<img src="/img/svg/send-message-icon.svg" alt="options">' : ''}
+                ${type ? "<img src=\"/img/svg/send-message-icon.svg\" alt=\"options\">" : ""}
             </button>
         `);
   }

@@ -6,14 +6,13 @@ interface IProps {
 }
 
 export class MessageItem extends Block<IProps> {
-    constructor(props: IProps) {
-        super(props);
-    }
-    
+  constructor(props: IProps) {
+    super(props);
+  }
 
-    protected render(): string {
-        const { text, time } = this.props;
-        return (`
+  protected render(): string {
+    const { text, time } = this.props;
+    return (`
             <div class="messageItem {{#if my}}messageItem_my{{/if}}">
                 <div class="messageItem__text">
                     ${text}
@@ -23,6 +22,6 @@ export class MessageItem extends Block<IProps> {
                     ${time}
                 </div>
             </div>
-        `)
-    }
+        `);
+  }
 }
