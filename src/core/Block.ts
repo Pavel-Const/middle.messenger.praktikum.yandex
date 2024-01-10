@@ -27,7 +27,7 @@ class Block<Props extends object, Refs extends Ref = Ref> {
 
   private _element: HTMLElement | null = null;
 
-  // @ts-ignore
+  // @ts-expect-error
   private _meta: { props };
 
   constructor(propsWithChildren = {}) {

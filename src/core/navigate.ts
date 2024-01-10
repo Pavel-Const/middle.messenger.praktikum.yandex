@@ -14,7 +14,7 @@ const pages = {
 export function navigate(page: string) {
   const app = document.getElementById("app");
 
-  // @ts-ignore
+  // @ts-expect-error
   const Component = pages[page];
   const component = new Component();
   if (app) {
