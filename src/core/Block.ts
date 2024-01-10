@@ -26,9 +26,7 @@ class Block<Props extends object, Refs extends Ref = Ref> {
   private eventBus: () => EventBus;
 
   private _element: HTMLElement | null = null;
-
-  // @ts-expect-error
-  private _meta: { props };
+  /* private _meta: { props }; */
 
   constructor(propsWithChildren = {}) {
     const eventBus = new EventBus();
@@ -38,9 +36,9 @@ class Block<Props extends object, Refs extends Ref = Ref> {
       children
     } = this._getChildrenAndProps(propsWithChildren);
 
-    this._meta = {
+    /*     this._meta = {
       props
-    };
+    }; */
 
     this.children = children;
     this.props = this._makePropsProxy(props);

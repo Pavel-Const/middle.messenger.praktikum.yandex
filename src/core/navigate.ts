@@ -1,6 +1,6 @@
 import * as Pages from "../pages";
 
-const pages = {
+const pages: { [key: string]: typeof Pages[keyof typeof Pages] } = {
   login: Pages.LoginPage,
   registration: Pages.RegistrationPage,
   404: Pages.NotFoundPage,
@@ -13,8 +13,6 @@ const pages = {
 
 export function navigate(page: string) {
   const app = document.getElementById("app");
-
-  // @ts-expect-error
   const Component = pages[page];
   const component = new Component();
   if (app) {

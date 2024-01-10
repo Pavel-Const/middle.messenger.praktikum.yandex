@@ -28,8 +28,7 @@ registerComponent("MessageItem", Components.MessageItem);
 document.addEventListener("DOMContentLoaded", () => navigate("login"));
 
 document.addEventListener("click", e => {
-  // @ts-expect-error
-  const page = e.target.getAttribute("page");
+  const page = (e.target as HTMLElement)?.getAttribute("page");
   if (page) {
     navigate(page);
     e.preventDefault();
