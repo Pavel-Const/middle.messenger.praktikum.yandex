@@ -34,12 +34,12 @@ export class ProfileItem extends Block<Props, Refs> {
 
     if (error) {
       this.refs.input.setProps({
-          edit: false, name: "", onBlur(): void {
+          edit: true, name: "", onBlur(): void {
           }, type: "", error, value });
       return false;
     }
     this.refs.input.setProps({
-        edit: false, name: "", onBlur(): void {
+        edit: true, name: "", onBlur(): void {
         }, type: "", error: '', value });
     return true;
   }
