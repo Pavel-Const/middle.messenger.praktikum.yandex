@@ -39,7 +39,7 @@ export class InputField extends Block<Props, Refs> {
       this.refs.error.setProps({ error });
       return false;
     }
-    this.refs.error.setProps({ error: undefined });
+    this.refs.error.setProps({ error: '' });
     return true;
   }
 

@@ -20,7 +20,7 @@ export class PasswordEditPage extends Block<Props, Refs> {
             validate: {
                 password: validators.password
             },
-            onSave: (event: any) => {
+            onSave: (event: Event) => {
                 event.preventDefault();
                 const oldPassword = this.refs.oldPassword.value();
                 const newPassword = this.refs.newPassword.value();

@@ -1,9 +1,5 @@
 import Block from '../../core/Block';
 
-/*
-import button from "./button.hbs?raw";
-*/
-
 interface Props {
   className?: string,
   label: string,
@@ -12,7 +8,6 @@ interface Props {
   onClick: () => void,
   events: { click: (e: Event) => void },
 }
-
 
 export class Button extends Block<Props> {
   constructor(props: Props) {

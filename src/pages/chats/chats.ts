@@ -18,7 +18,7 @@ export class ChatsPage extends Block<Props, Refs> {
             validate: {
                 message: validators.message
             },
-            onSend: (event: any) => {
+            onSend: (event: Event) => {
                 event.preventDefault();
                 const message = this.refs.message.value();
                 console.log({

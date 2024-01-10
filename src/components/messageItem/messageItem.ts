@@ -1,7 +1,4 @@
 import Block from "../../core/Block";
-/*
-import button from "./button.hbs?raw";
-*/
 
 interface IProps {
     text: string,

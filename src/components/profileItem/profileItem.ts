@@ -33,10 +33,14 @@ export class ProfileItem extends Block<Props, Refs> {
     const error = this.props.validate?.(value);
 
     if (error) {
-      this.refs.input.setProps({ error, value });
+      this.refs.input.setProps({
+          edit: false, name: "", onBlur(): void {
+          }, type: "", error, value });
       return false;
     }
-    this.refs.input.setProps({ error: undefined, value });
+    this.refs.input.setProps({
+        edit: false, name: "", onBlur(): void {
+        }, type: "", error: '', value });
     return true;
   }
 

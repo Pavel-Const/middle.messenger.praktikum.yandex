@@ -29,7 +29,7 @@ export class RegistrationPage extends Block<Props, Refs> {
 				password: validators.password,
 				phone: validators.phone
 			},
-			onReg: (event: any) => {
+			onReg: (event: Event) => {
 				event.preventDefault();
 				const login = this.refs.login.value();
 				const password = this.refs.password.value();
