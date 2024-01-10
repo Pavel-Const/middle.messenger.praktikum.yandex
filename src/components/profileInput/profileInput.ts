@@ -33,7 +33,8 @@ export class ProfileInput extends Block<Props, Refs> {
       error
     } = this.props;
     return (`
-      <input class="profileValue ${edit ? "profileValue_edit" : ""} ${error ? "profileValue_error" : ""}"  name="${name}" type="${type}" ref="input" value="${value}"/>
-        `);
+      <input class="profileValue ${edit ? "profileValue_edit" : ""}
+        ${error ? "profileValue_error" : ""}"  name="${name}" type="${type}" ref="input" value="${value}"/>
+      `);
   }
 }

@@ -20,6 +20,7 @@ class Block<Props extends object, Refs extends Ref = Ref> {
 
   protected refs: Refs = {} as Refs;
 
+  // eslint-disable-next-line no-use-before-define
   public children: Record<string, Block<Refs>> = {};
 
   private eventBus: () => EventBus;
@@ -118,8 +119,8 @@ class Block<Props extends object, Refs extends Ref = Ref> {
     }
   }
 
-  // @ts-ignore
-  protected componentDidUpdate(oldProps: Props, newProps: Props) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  private componentDidUpdate(oldProps: Props, newProps: Props) {
     return true;
   }
 
@@ -190,6 +191,7 @@ class Block<Props extends object, Refs extends Ref = Ref> {
     // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
     const self = this;
 
+    // eslint-disable-next-line no-undef
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop];

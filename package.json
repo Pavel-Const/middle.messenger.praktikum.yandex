@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "engines": {
-    "node": "18.19.0"
+    "node": "18.18.0"
   },
   "scripts": {
     "dev": "vite --port 3000",
@@ -12,7 +12,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint",
-    "lint:fix": ".\\node_modules\\.bin\\eslint src\\** --fix",
+    "lint:fix": ".\\node_modules\\.bin\\eslint src\\**\\*.ts --fix",
     "style": "stylelint '**/*{.css,.scss}'",
     "style:fix": "stylelint '**/*{.css,.scss}' --fix"
   },

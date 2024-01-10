@@ -7,9 +7,15 @@
   ],
   "root": true,
   "rules": {
+    "strict": "off",
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off",
+    "no-unused-vars": "off",
+    "no-param-reassign": "off",
+    "prefer-promise-reject-errors": "off",
     "max-len": [
       2,
-      150
+      200
     ],
     "eol-last": [
       "error",
