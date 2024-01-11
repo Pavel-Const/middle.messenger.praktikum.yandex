@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import Handlebars from "handlebars";
 
 export type Ref = {
-    [key: string]: object
+  [key: string]: object
 }
 
 class Block<Props extends object, Refs extends Ref = Ref> {
@@ -26,6 +26,7 @@ class Block<Props extends object, Refs extends Ref = Ref> {
   private eventBus: () => EventBus;
 
   private _element: HTMLElement | null = null;
+
   /* private _meta: { props }; */
 
   constructor(propsWithChildren = {}) {
@@ -118,7 +119,7 @@ class Block<Props extends object, Refs extends Ref = Ref> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  private componentDidUpdate(oldProps: Props, newProps: Props) {
+  private componentDidUpdate(_oldProps: Props, _newProps: Props) {
     return true;
   }
 
@@ -218,11 +219,11 @@ class Block<Props extends object, Refs extends Ref = Ref> {
   }
 
   show() {
-        this.getContent()!.style.display = "block";
+    this.getContent()!.style.display = "block";
   }
 
   hide() {
-        this.getContent()!.style.display = "none";
+    this.getContent()!.style.display = "none";
   }
 }
 
