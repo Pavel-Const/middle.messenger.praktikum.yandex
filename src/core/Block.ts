@@ -79,6 +79,14 @@ class Block<Props extends object, Refs extends Ref = Ref> {
       });
   }
 
+  _removeEvents() {
+    const { events = {} } = this.props as { events: Record<string, () => void> };
+
+    Object.entries(events).forEach(([eventName, eventHandler]) => {
+      this._element?.removeEventListener(eventName, eventHandler);
+    });
+  }
+
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
