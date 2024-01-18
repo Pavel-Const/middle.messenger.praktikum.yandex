@@ -1,0 +1,42 @@
+{
+  "extends": "airbnb-base/legacy",
+  // Здесь вы указываете, что наследуетесь от набора правил
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "root": true,
+  "rules": {
+    "strict": "off",
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off",
+    "no-unused-vars": "off",
+    "no-param-reassign": "off",
+    "prefer-promise-reject-errors": "off",
+    "func-names": "off",
+    "no-console": "off",
+    "max-len": [
+      2,
+      200
+    ],
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "indent": [
+      "error",
+      2
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "quotes": [
+      "error",
+      "double"
+    ],
+    "camelcase": "off",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/no-unused-vars": 2
+  }
+}

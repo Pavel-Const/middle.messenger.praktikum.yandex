@@ -1,1 +1,1 @@
-export { default as PasswordEditPage } from './passwordEdit.hbs?raw';
+export { PasswordEditPage as default } from "./passwordEdit";

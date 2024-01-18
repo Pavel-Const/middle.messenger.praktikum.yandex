@@ -1,1 +1,3 @@
-export { default as Error } from './errorBlock.hbs?raw';
+import "./errorBlock.scss";
+
+export { ErrorBlock } from "./errorBlock.ts";

@@ -10,15 +10,32 @@
     "dev": "vite --port 3000",
     "start": "tsc && vite build && vite preview --port 3000",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint",
+    "lint:fix": ".\\node_modules\\.bin\\eslint src\\**\\*.ts --fix",
+    "style": "stylelint '**/*{.css,.scss}'",
+    "style:fix": "stylelint '**/*{.css,.scss}' --fix"
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "eslint": "8.2.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.25.2",
     "express": "^4.18.2",
     "handlebars": "4.7.8",
+    "install": "^0.13.0",
+    "npm": "^10.2.5",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
+    "stylelint": "^16.1.0",
+    "stylelint-config-standard": "^36.0.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
+  },
+  "dependencies": {
+    "nanoid": "^4.0.2",
+    "stylelint-scss": "^6.0.0"
   }
 }

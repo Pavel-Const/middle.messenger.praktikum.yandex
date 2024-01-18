@@ -1,0 +1,13 @@
+
+.fieldError {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 7px;
+    color: var(--error-color);
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 8px; /* 100% */
+    align-self: flex-start;
+}

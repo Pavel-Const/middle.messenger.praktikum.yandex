@@ -1,8 +1,8 @@
-export {LoginPage} from './login'
-export {RegistrationPage} from './registration'
-export {NotFoundPage} from './notFound'
-export {ServerErrorPage} from './serverError'
-export {ProfilePage} from './profile'
-export {ProfileEditPage} from './profileEdit'
-export {PasswordEditPage} from './passwordEdit'
-export {ChatsPage} from './chats'
+export { default as RegistrationPage } from "./registration";
+export { default as LoginPage } from "./login";
+export { default as NotFoundPage } from "./notFound";
+export { default as ServerErrorPage } from "./serverError";
+export { default as ProfilePage } from "./profile";
+export { default as ProfileEditPage } from "./profileEdit";
+export { default as PasswordEditPage } from "./passwordEdit";
+export { default as ChatsPage } from "./chats";

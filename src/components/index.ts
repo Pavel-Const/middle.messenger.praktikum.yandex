@@ -1,6 +1,11 @@
-export { Button } from './buttonBlue'
-export { Link } from './linkBlue'
-export { Input } from './input'
-export { Form } from './form'
-export { Error } from './errorBlock'
-export { ProfileItem } from './profileItem'
+export { default as Button } from "./buttonBlue";
+export { Form } from "./form";
+export { InputField } from "./inputField";
+export { Input } from "./input";
+export { ErrorValid } from "./errorValid";
+export { Link } from "./linkBlue";
+export { ErrorBlock } from "./errorBlock";
+export { ProfileItem } from "./profileItem";
+export { ProfileInput } from "./profileInput";
+export { ChatItem } from "./chatItem";
+export { MessageItem } from "./messageItem";
