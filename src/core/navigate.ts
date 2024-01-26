@@ -15,8 +15,8 @@ export function navigate(page: string) {
   const app = document.getElementById("app");
   const Component = pages[page];
   const component = new Component();
-  if (app) {
+  /*  if (app) {
     app.innerHTML = "";
-  }
+  } */
   app?.append(component.getContent()!);
 }

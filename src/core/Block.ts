@@ -227,7 +227,7 @@ class Block<Props extends object, Refs extends Ref = Ref> {
   }
 
   show() {
-    this.getContent()!.style.display = "block";
+    this.getContent()!.style.display = "flex";
   }
 
   hide() {
