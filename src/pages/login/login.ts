@@ -1,6 +1,7 @@
 import Block from "../../core/Block";
 import * as validators from "../../utils/validators";
 import { InputField } from "../../components";
+import { signin } from "../../services/auth";
 
 interface Props {
     validate: {
@@ -25,11 +26,16 @@ export class LoginPage extends Block<Props, Refs> {
         event.preventDefault();
         const login = this.refs.login.value();
         const password = this.refs.password.value();
-        console.log({
+        if (!login) {
+          return;
+        }
+        if (!password) {
+          return;
+        }
+        signin({
           login,
           password
-        });
-        console.log(login);
+        }).catch(error => console.log(error) /* this.refs.error.setProps({ error }) */);
       }
     });
   }
@@ -47,7 +53,7 @@ export class LoginPage extends Block<Props, Refs> {
                     </div>
                     <div class="formBlock__actions">
                         {{{ Button label="Авторизоваться" onClick=onLogin}}}
-                        {{{ Link label="Нет аккаунта?" page="registration"}}}
+                        {{{ Link label="Нет аккаунта?" page="/sign-up"}}}
                     </div>
                 {{/Form}}
             </div>

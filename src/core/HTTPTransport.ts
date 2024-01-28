@@ -1,3 +1,6 @@
+import { LoginRequestData } from "../api/type.ts";
+import constants from "../constants";
+
 const METHODS = {
   GET: "GET",
   POST: "POST",
@@ -23,38 +26,46 @@ function queryStringify(data: { [key: string]: string }) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-class HTTPTransport {
+export class HTTPTransport {
+  private apiUrl: string = "";
+
+  constructor(apiPath: string) {
+    this.apiUrl = `${constants.HOST}${apiPath}`;
+  }
+
   get = (url: string, options: IRequest = {}) => {
-    return this.request(url, {
+    return this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.GET
-    }, options.timeout);
+    });
   };
 
-  post = (url: string, options: { timeout?: number } = {}) => {
-    return this.request(url, {
+  post = (url: string, options?: { data: LoginRequestData }) => {
+    return this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.POST
-    }, options.timeout);
+    });
   };
 
   put = (url: string, options: { timeout?: number } = {}) => {
-    return this.request(url, {
+    return this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.PUT
-    }, options.timeout);
+    });
   };
 
   delete = (url: string, options: { timeout?: number } = {}) => {
-    return this.request(url, {
+    return this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.DELETE
-    }, options.timeout);
+    });
   };
 
   request = (url: string, options: IRequest = {}, timeout = 5000) => {
     const {
-      headers = {},
+      headers = {
+        "Content-Type": "application/json"
+      },
       method,
       data
     } = options;
@@ -70,7 +81,9 @@ class HTTPTransport {
         isGet && !!data
           ? `${url}${queryStringify(data)}`
           : url,
+        true
       );
+      xhr.withCredentials = true;
       Object.keys(headers)
         .forEach(key => {
           xhr.setRequestHeader(key, headers[key]);
@@ -85,7 +98,7 @@ class HTTPTransport {
       if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(data);
+        xhr.send(JSON.stringify(data));
       }
     });
   };

@@ -111,6 +111,10 @@ class Block<Props extends object, Refs extends Ref = Ref> {
   componentDidMount() {
   }
 
+  componentWillUnmount() {
+
+  }
+
   public dispatchComponentDidMount() {
     this.eventBus()
       .emit(Block.EVENTS.FLOW_CDM);
