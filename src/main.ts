@@ -12,6 +12,7 @@ import {
   ProfilePage,
   RegistrationPage
 } from "./pages";
+import {initApp} from "./services/initApp.ts";
 
 declare global {
   interface Window {
@@ -60,3 +61,4 @@ document.addEventListener("click", e => {
     router.go(page);
   }
 });
+document.addEventListener("DOMContentLoaded", () => initApp());

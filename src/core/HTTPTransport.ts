@@ -89,12 +89,16 @@ export class HTTPTransport {
           xhr.setRequestHeader(key, headers[key]);
         });
       xhr.onload = function () {
-        resolve(xhr);
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(xhr);
+        } else {
+          reject(new Error(`Request failed with status ${xhr.status}: ${xhr.statusText}`));
+        }
       };
-      xhr.onabort = reject;
-      xhr.onerror = reject;
+      xhr.onabort = () => reject(new Error("Request was aborted by the user"));
+      xhr.onerror = () => reject(new Error("Network error occurred"));
+      xhr.ontimeout = () => reject(new Error("Request timed out"));
       xhr.timeout = timeout;
-      xhr.ontimeout = reject;
       if (isGet || !data) {
         xhr.send();
       } else {
