@@ -49,12 +49,11 @@ class Route {
   }
 
   render(): void {
-    console.log("render");
     const root = document.querySelector(this._props.rootQuery);
     if (root) {
-      root.innerHTML = ""; // Очистка контейнера перед добавлением нового компонента
+      root.innerHTML = "";
       this._block = new this._blockClass();
-      this._block.dispatchComponentDidMount();
+   /*   this._block.dispatchComponentDidMount();*/
       root.append(this._block.getContent());
     }
   }

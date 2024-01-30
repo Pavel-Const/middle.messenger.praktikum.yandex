@@ -1,7 +1,6 @@
 import Block from "../../core/Block";
 import * as validators from "../../utils/validators";
 import { ProfileItem } from "../../components";
-import { initApp } from "../../services/initApp.ts";
 import { connect } from "../../utils/connect";
 
 interface Props {
@@ -23,8 +22,6 @@ type Refs = {
 }
 
 export class ProfileEditPage extends Block<Props, Refs> {
-  private user: any;
-  
   constructor() {
     super({
       validate: {
@@ -52,23 +49,12 @@ export class ProfileEditPage extends Block<Props, Refs> {
         });
       }
     });
-    // eslint-disable-next-line no-unused-expressions
-    this.user;
-    /* initApp(); */
+    
   }
 
-  componentDidMount() {
+/*  componentDidMount() {
     initApp();
-    this.user = window.store.state.user;
-    if (!this.user) return;
-    this.refs.email.setProps({
-      label: "Почта",
-      edit: true,
-      name: "",
-      type: "",
-      value: this.user.email
-    });
-  }
+  }*/
 
   protected render(): string {
     return (`
@@ -87,7 +73,7 @@ export class ProfileEditPage extends Block<Props, Refs> {
                 <div class="profile__avaHov">Поменять аватар</div>
             </div>
             <ul class="profile__infoList">
-              {{{ ProfileItem name="email" type="text" label="Почта" edit="true" ref="email" validate=validate.email}}}
+              {{{ ProfileItem name="email" type="text" label="Почта" value=user.email  edit="true" ref="email" validate=validate.email}}}
               {{{ ProfileItem name="login" type="text" label="Логин" value=user.login edit="true" ref="login" validate=validate.login}}}
               {{{ ProfileItem name="first_name" type="text" label="Имя" value=user.firstName edit="true" ref="first_name" validate=validate.names}}}
               {{{ ProfileItem name="second_name" type="text" label="Фамилия" value=user.secondName edit="true" ref="second_name" validate=validate.names}}}

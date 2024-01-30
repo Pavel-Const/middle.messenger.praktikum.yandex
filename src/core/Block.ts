@@ -131,7 +131,7 @@ class Block<Props extends object, Refs extends Ref = Ref> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  private componentDidUpdate(_oldProps: Props, _newProps: Props) {
+  componentDidUpdate(_oldProps: Props, _newProps: Props) {
     return true;
   }
 

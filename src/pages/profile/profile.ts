@@ -1,21 +1,14 @@
 import Block from "../../core/Block";
-import { initApp } from "../../services/initApp.ts";
 import { connect } from "../../utils/connect";
 import { logout } from "../../services/auth";
 class ProfilePage extends Block<{}> {
-  private user: any;
 
   constructor() {
     super({
       logout: logout
     });
     // eslint-disable-next-line no-unused-expressions
-    this.user;
-  }
 
-  componentDidMount() {
-    this.user = window.store.state.user;
-    initApp();
   }
 
   protected render(): string {
