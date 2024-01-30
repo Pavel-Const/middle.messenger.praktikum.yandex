@@ -2,6 +2,8 @@ import Block from "../../core/Block";
 import * as validators from "../../utils/validators";
 import { ProfileItem } from "../../components";
 import { connect } from "../../utils/connect";
+import { EditUser } from "../../api/type.ts";
+import { editProfile } from "../../services/user.ts";
 
 interface Props {
   validate: {
@@ -22,8 +24,9 @@ type Refs = {
 }
 
 export class ProfileEditPage extends Block<Props, Refs> {
-  constructor() {
+  constructor(props: Props) {
     super({
+      ...props,
       validate: {
         login: validators.login,
         email: validators.email,
@@ -33,28 +36,25 @@ export class ProfileEditPage extends Block<Props, Refs> {
       },
       onSave: (event: Event) => {
         event.preventDefault();
-        const login = this.refs.login.value();
-        const email = this.refs.email.value();
-        const first_name = this.refs.first_name.value();
-        const second_name = this.refs.second_name.value();
-        const phone = this.refs.phone.value();
-        const display_name = this.refs.display_name.value();
-        console.log({
-          login,
-          email,
-          first_name,
-          second_name,
-          phone,
-          display_name
-        });
+        const user: EditUser = {
+          login: this.refs.login.value()!,
+          first_name: this.refs.first_name.value()!,
+          second_name: this.refs.second_name.value()!,
+          email: this.refs.email.value()!,
+          phone: this.refs.phone.value()!,
+          display_name: this.refs.display_name.value()!
+        };
+        if (!user.email || !user.login || !user.phone || !user.first_name || !user.second_name || !user.display_name) {
+          return;
+        }
+        editProfile(user).catch(error => console.log(error) /* this.refs.errorLine.setProps({error}) */);
       }
     });
-    
   }
 
-/*  componentDidMount() {
+  /*  componentDidMount() {
     initApp();
-  }*/
+  } */
 
   protected render(): string {
     return (`

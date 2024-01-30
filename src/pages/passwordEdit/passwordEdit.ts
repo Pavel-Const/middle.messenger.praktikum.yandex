@@ -1,6 +1,7 @@
 import Block from "../../core/Block";
 import * as validators from "../../utils/validators";
 import { ProfileItem } from "../../components";
+import { editPassword } from "../../services/user.ts";
 
 interface Props {
     validate: {
@@ -24,13 +25,17 @@ export class PasswordEditPage extends Block<Props, Refs> {
         event.preventDefault();
         const oldPassword = this.refs.oldPassword.value();
         const newPassword = this.refs.newPassword.value();
-        const repeatPassword = this.refs.repeatPassword.value();
-
-        console.log({
+        /* const repeatPassword = this.refs.repeatPassword.value(); */
+        if (!oldPassword) {
+          return;
+        }
+        if (!newPassword) {
+          return;
+        }
+        editPassword({
           oldPassword,
-          newPassword,
-          repeatPassword
-        });
+          newPassword
+        }).catch(error => console.log(error) /* this.refs.error.setProps({ error }) */);
       }
     });
   }

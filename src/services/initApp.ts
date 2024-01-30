@@ -15,7 +15,7 @@ const initApp = async () => {
 
   /* const chats = await getChats(); */
   window.store.set({ user: me /* chats */ });
-  /* router.go("/settings"); */
+  router.go("/settings");
 };
 
 /* const initChatPage = async () => {

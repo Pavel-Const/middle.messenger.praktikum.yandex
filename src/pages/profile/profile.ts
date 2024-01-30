@@ -1,14 +1,13 @@
 import Block from "../../core/Block";
 import { connect } from "../../utils/connect";
 import { logout } from "../../services/auth";
+import { UserDTO } from "../../api/type.ts";
 class ProfilePage extends Block<{}> {
-
-  constructor() {
+  constructor(props: UserDTO) {
     super({
+      ...props,
       logout: logout
     });
-    // eslint-disable-next-line no-unused-expressions
-
   }
 
   protected render(): string {

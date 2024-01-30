@@ -12,7 +12,6 @@ interface IRequest {
   headers?: { [key: string]: string };
   method?: string;
   data?: any;
-  timeout?: number;
 }
 
 function queryStringify(data: { [key: string]: string }) {
@@ -47,7 +46,7 @@ export class HTTPTransport {
     });
   };
 
-  put = (url: string, options: { timeout?: number } = {}) => {
+  put = (url: string, options?: {data: any}) => {
     return this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.PUT
