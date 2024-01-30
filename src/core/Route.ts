@@ -6,13 +6,14 @@ function isEqual(lhs: any, rhs: any) {
   return lhs === rhs;
 }
 
-function render(query: string, block: any) {
+/* function render(query: string, block: any) {
   const root = document.querySelector(query);
   if (root) {
+    root.innerHTML = "";
     root.append(block.getContent());
   }
   return root;
-}
+} */
 
 class Route {
   private _pathname: string;
@@ -48,12 +49,14 @@ class Route {
   }
 
   render(): void {
-    if (!this._block) {
+    console.log("render");
+    const root = document.querySelector(this._props.rootQuery);
+    if (root) {
+      root.innerHTML = ""; // Очистка контейнера перед добавлением нового компонента
       this._block = new this._blockClass();
-      render(this._props.rootQuery, this._block);
-      return;
+      this._block.dispatchComponentDidMount();
+      root.append(this._block.getContent());
     }
-    this._block.show();
   }
 }
 

@@ -60,7 +60,6 @@ export class ProfileItem extends Block<Props, Refs> {
     const {
       label
     } = this.props;
-    console.log(this.props.value);
     return (`
            <li class="profileItem">
                 <div class="profileName">${label}</div>

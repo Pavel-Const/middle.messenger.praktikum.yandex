@@ -21,7 +21,6 @@ export default class AuthApi {
   async me(): Promise<UserDTO | APIError> {
     let result: UserDTO | APIError;
     result = await authApi.get("/user") as UserDTO | APIError;
-    console.log(result);
     return result;
   }
 

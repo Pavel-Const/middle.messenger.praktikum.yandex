@@ -35,7 +35,6 @@ class Router {
       const currentTarget = event.currentTarget as Window;
       this._onRoute(currentTarget.location.pathname);
     };
-
     this._onRoute(window.location.pathname);
   }
 

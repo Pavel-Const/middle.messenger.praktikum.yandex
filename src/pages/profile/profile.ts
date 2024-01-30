@@ -1,9 +1,20 @@
 import Block from "../../core/Block";
 import { initApp } from "../../services/initApp.ts";
 import { connect } from "../../utils/connect";
+import { logout } from "../../services/auth";
 class ProfilePage extends Block<{}> {
+  private user: any;
+
   constructor() {
-    super();
+    super({
+      logout: logout
+    });
+    // eslint-disable-next-line no-unused-expressions
+    this.user;
+  }
+
+  componentDidMount() {
+    this.user = window.store.state.user;
     initApp();
   }
 
@@ -35,7 +46,7 @@ class ProfilePage extends Block<{}> {
                         <nav class="profile__actions">
                             {{{ Link label="Изменить данные" className="profile__link" page="/settings-edit"}}}
                             {{{ Link label="Изменить пароль" className="profile__link" page="/settings-password"}}}
-                            {{{ Link label="Выйти" className="profile__link profile__link_red" page="login"}}}
+                            {{{ Link label="Выйти" className="profile__link profile__link_red" onClick=logout}}}
                         </nav>
                     </div>
                 </div>

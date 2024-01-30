@@ -12,7 +12,7 @@ import {
   ProfilePage,
   RegistrationPage
 } from "./pages";
-import {initApp} from "./services/initApp.ts";
+import { initApp } from "./services/initApp.ts";
 
 declare global {
   interface Window {

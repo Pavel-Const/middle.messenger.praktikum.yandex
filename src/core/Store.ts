@@ -6,7 +6,7 @@ export enum StoreEvents {
 }
 
 export class Store<State extends Record<string, any>> extends EventBus {
-  private state: State = {} as State;
+  state: State = {} as State;
 
   constructor(defaultState: State) {
     super();
