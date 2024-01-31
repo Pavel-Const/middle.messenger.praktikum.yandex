@@ -19,7 +19,6 @@ export class ProfileItem extends Block<Props, Refs> {
       ...props,
       onBlur: () => this.validate()
     });
-    console.log(props.value);
   }
 
   public value() {

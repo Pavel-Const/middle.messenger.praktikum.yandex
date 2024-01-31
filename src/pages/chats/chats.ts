@@ -1,6 +1,7 @@
 import Block from "../../core/Block";
 import * as validators from "../../utils/validators";
 import { InputField } from "../../components";
+import { initChatPage } from "../../services/initApp.ts";
 
 interface Props {
     validate: {
@@ -26,6 +27,7 @@ export class ChatsPage extends Block<Props, Refs> {
         });
       }
     });
+    initChatPage();
   }
 
   protected render(): string {
@@ -33,8 +35,11 @@ export class ChatsPage extends Block<Props, Refs> {
       <div class="chat">
         <div class="chat__aside">
           <div class="chat__asideHead">
-            <div class="chat__asideLink">Профиль
-              <img src="/img/svg/arrow-right.svg" alt="arrow">
+            <div class="chat__asideHeadBlock">
+              <img src="/img/svg/create-chat.svg" alt="read">
+              <div class="chat__asideLink" page="/settings">Профиль
+                  <img src="/img/svg/arrow-right.svg" alt="arrow">
+              </div>
             </div>
             <div class="chat__asideSearch">
               <input type="text" class="chat__asideSearchInput" placeholder="Поиск">

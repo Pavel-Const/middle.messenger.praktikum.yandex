@@ -62,9 +62,7 @@ export class HTTPTransport {
 
   request = (url: string, options: IRequest = {}, timeout = 5000) => {
     const {
-      headers = {
-        "Content-Type": "application/json"
-      },
+      headers = {},
       method,
       data
     } = options;
@@ -77,16 +75,23 @@ export class HTTPTransport {
       const isGet = method === METHODS.GET;
       xhr.open(
         method,
-        isGet && !!data
+        isGet && !!data && !(data instanceof FormData)
           ? `${url}${queryStringify(data)}`
           : url,
         true
       );
       xhr.withCredentials = true;
-      Object.keys(headers)
-        .forEach(key => {
+
+      if (!(data instanceof FormData)) {
+        // Задайте заголовок Content-Type только если он явно указан
+        // По умолчанию установите "application/json"
+        if (!headers["Content-Type"]) {
+          headers["Content-Type"] = "application/json";
+        }
+        Object.keys(headers).forEach(key => {
           xhr.setRequestHeader(key, headers[key]);
         });
+      }
       xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 300) {
           resolve(xhr);
@@ -101,7 +106,7 @@ export class HTTPTransport {
       if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(JSON.stringify(data));
+        xhr.send(data instanceof FormData ? data : JSON.stringify(data));
       }
     });
   };

@@ -1,7 +1,7 @@
 import { HTTPTransport } from "../core/HTTPTransport.ts";
 import {
-  CreateUser, EditPassword, EditUser, SignUpResponse
-} from './type';
+  EditPassword, EditUser, SignUpResponse
+} from "./type";
 
 const userApi = new HTTPTransport("/user");
 
@@ -12,7 +12,7 @@ export default class UserApi {
     return result;
   }
 
-  async avatar(data: CreateUser): Promise<SignUpResponse> {
+  async avatar(data: FormData): Promise<SignUpResponse> {
     let result: SignUpResponse;
     result = await userApi.put("/profile/avatar", { data }) as SignUpResponse;
     return result;

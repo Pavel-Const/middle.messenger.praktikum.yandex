@@ -1,6 +1,7 @@
 import { getUser } from "./auth";
 /* import { getChats } from "./chat"; */
 import Router from "../core/Router.ts";
+import { getChats } from "./chat.ts";
 
 const router = new Router("#app");
 
@@ -15,14 +16,15 @@ const initApp = async () => {
 
   /* const chats = await getChats(); */
   window.store.set({ user: me /* chats */ });
-  router.go("/settings");
+  /* router.go("/settings"); */
 };
 
-/* const initChatPage = async () => {
+const initChatPage = async () => {
   const chats = await getChats();
   window.store.set({ chats });
-}; */
+};
 
 export {
-  initApp/*  initChatPage */
+  initApp,
+  initChatPage
 };

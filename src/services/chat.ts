@@ -1,4 +1,3 @@
-/*
 import ChatApi from "../api/chat";
 import { apiHasError } from "../utils/apiHasError";
 import { transformChats } from "../utils/apiTransformers";
@@ -33,4 +32,3 @@ export {
   createChat,
   getChats
 };
-*/

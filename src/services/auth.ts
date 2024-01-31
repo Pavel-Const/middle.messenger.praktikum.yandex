@@ -24,7 +24,7 @@ const signin = async (data: LoginRequestData) => {
 
   window.store.set({ user: me });
   /* navigate("emails"); */
-  router.go("/settings");
+  router.go("/messenger");
 };
 
 const signup = async (data: CreateUser) => {
@@ -35,7 +35,7 @@ const signup = async (data: CreateUser) => {
 
   const me = await getUser();
   window.store.set({ user: me });
-  router.go("/settings");
+  router.go("/messenger");
 };
 
 const logout = async () => {

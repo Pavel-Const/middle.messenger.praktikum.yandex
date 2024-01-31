@@ -1,4 +1,4 @@
-/* import { HTTPTransport } from "../core/httpTransport";
+import { HTTPTransport } from "../core/HTTPTransport.ts";
 import { APIError, ChatDTO, CreateChat } from "./type";
 
 const chatApi = new HTTPTransport("/chats");
@@ -11,4 +11,4 @@ export default class ChatApi {
   async getChats(): Promise<ChatDTO[] | APIError > {
     return chatApi.get<ChatDTO[]>("");
   }
-} */
+}

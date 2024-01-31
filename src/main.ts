@@ -45,6 +45,8 @@ registerComponent("ProfileItem", Components.ProfileItem);
 registerComponent("ProfileInput", Components.ProfileInput);
 registerComponent("ChatItem", Components.ChatItem);
 registerComponent("MessageItem", Components.MessageItem);
+registerComponent("Avatar", Components.Avatar);
+registerComponent("AvatarField", Components.AvatarField);
 
 const router = new Router("#app");
 

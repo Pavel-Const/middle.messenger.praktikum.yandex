@@ -1,5 +1,5 @@
 import UserApi from "../api/user";
-import { CreateUser, EditPassword, EditUser } from '../api/type';
+import { EditPassword, EditUser } from "../api/type";
 import { apiHasError } from "../utils/apiHasError";
 
 import Router from "../core/Router.ts";
@@ -23,7 +23,7 @@ const editProfile = async (data: EditUser) => {
   /* window.store.set({ user: me }); */
   router.go("/settings");
 };
-const editAvatar = async (data: CreateUser) => {
+const editAvatar = async (data: FormData) => {
   const response = await userApi.avatar(data);
   if (apiHasError(response)) {
     throw Error(response.reason);
