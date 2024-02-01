@@ -24,8 +24,11 @@ export class AvatarField extends Block<Props, Refs> {
         this.uploadAvatar(file);
       }
     });
+    console.log(this.props.src);
   }
 
+  
+  
   previewAvatar(file: File): void {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -44,9 +47,10 @@ export class AvatarField extends Block<Props, Refs> {
   }
 
   protected render(): string {
+    const avatarSrc = `https://ya-praktikum.tech/api/v2/resources/${this.props.src}` || '/img/ava-default.png';
     return (`
       <label class="profile__ava {{#if edit}}profile__ava_edit{{/if}}" >
-        <img src="/img/ava-default.png" alt="avatarImage">
+        <img src="${avatarSrc}" alt="avatarImage">
         {{#if edit}}{{{ Avatar onChange=onChange }}}{{/if}}
         <div class="profile__avaHov">Поменять аватар</div>
       </label>

@@ -2,6 +2,7 @@ import Block from "../../core/Block";
 import { connect } from "../../utils/connect";
 import { logout } from "../../services/auth";
 import { UserDTO } from "../../api/type.ts";
+import {initApp} from "../../services/initApp.ts";
 class ProfilePage extends Block<{}> {
   constructor(props: UserDTO) {
     super({
@@ -9,6 +10,7 @@ class ProfilePage extends Block<{}> {
       logout: logout
     });
     console.log(props);
+    initApp();
   }
 
   protected render(): string {
