@@ -2,6 +2,7 @@ import Block from "../../core/Block";
 import * as validators from "../../utils/validators";
 import { InputField } from "../../components";
 import { initChatPage } from "../../services/initApp.ts";
+import { connect } from "../../utils/connect.ts";
 
 interface Props {
     validate: {
@@ -13,11 +14,15 @@ interface Props {
 type Refs = {
     message: InputField,
 }
-export class ChatsPage extends Block<Props, Refs> {
-  constructor() {
+class ChatsPage extends Block<Props, Refs> {
+  constructor(props: Props) {
     super({
+      ...props,
       validate: {
         message: validators.message
+      },
+      checkChat: (id: number) => {
+        console.log(id);
       },
       onSend: (event: Event) => {
         event.preventDefault();
@@ -36,7 +41,7 @@ export class ChatsPage extends Block<Props, Refs> {
         <div class="chat__aside">
           <div class="chat__asideHead">
             <div class="chat__asideHeadBlock">
-              <img src="/img/svg/create-chat.svg" alt="read">
+              {{{ CreateChat ava="" last="Изображение"}}}
               <div class="chat__asideLink" page="/settings">Профиль
                   <img src="/img/svg/arrow-right.svg" alt="arrow">
               </div>
@@ -47,10 +52,9 @@ export class ChatsPage extends Block<Props, Refs> {
             </div>
           </div>
           <div class="chat__asideList">
-            {{{ ChatItem ava="" name="Андрей" last="Изображение" my="true" time="10:49" count="2"}}}
-            {{{ ChatItem ava="" name="Павел" last="Друзья, у меня для вас особенный выпуск новостей!Друзья, у меня для вас особенный выпуск новостей!"  time="10:49" count="4"}}}
-            {{{ ChatItem ava="" name="Павел" last="Друзья, у меня для вас особенный выпуск новостей!Друзья, у меня для вас особенный выпуск новостей!"  time="10:49" count="4"}}}
-            {{{ ChatItem ava="" name="Павел" last="Друзья, у меня для вас особенный выпуск новостей!Друзья, у меня для вас особенный выпуск новостей!"  time="10:49" count="4"}}}
+            {{#each chats}}
+              {{{ ChatItem ava=this.avatar name=this.title last=this.last_message time=this.created_by count=this.unread_count id=id onClick=this.handleClick }}}
+            {{/each}}
           </div>
       </div>
       <div class="chat__content">
@@ -63,37 +67,7 @@ export class ChatsPage extends Block<Props, Refs> {
             <img src="/img/svg/options-icon.svg" alt="options">
           </div>
         </div>
-        <div class="chat__contentBody">
-          <div class="chat__contentDate">19 июня</div>
-          {{{ MessageItem text="Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА
-          в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все
-           тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
-
-          Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда
-           и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро." time="11:56"}}}
-          {{{ MessageItem text="Круто!" my="true" time="11:56"}}}
-          {{{ MessageItem text="Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА
-          в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все
-          тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
-
-          Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда
-           и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро." time="11:56"}}}
-          {{{ MessageItem text="Круто!" my="true" time="11:56"}}}
-          {{{ MessageItem text="Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА
-           в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все
-            тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
-
-          Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда
-          и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро." time="11:56"}}}
-          {{{ MessageItem text="Круто!" my="true" time="11:56"}}}
-          {{{ MessageItem text="Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА
-           в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все
-            тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
-
-          Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда
-           и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро." time="11:56"}}}
-          {{{ MessageItem text="Круто!" my="true" time="11:56"}}}
-        </div>
+          {{{MessageBlock }}}
         <div class="chat__contentBottom">
           <img src="/img/svg/message-options-icon.svg" alt="options">
           {{{InputField type="text" label="" name="message" ref="message" validate=validate.message}}}
@@ -104,3 +78,5 @@ export class ChatsPage extends Block<Props, Refs> {
         `);
   }
 }
+// @ts-ignore
+export default connect(({ chats, user }) => ({ chats, user }))(ChatsPage);

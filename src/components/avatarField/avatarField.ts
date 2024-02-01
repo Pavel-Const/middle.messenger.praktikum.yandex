@@ -27,8 +27,6 @@ export class AvatarField extends Block<Props, Refs> {
     console.log(this.props.src);
   }
 
-  
-  
   previewAvatar(file: File): void {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -47,7 +45,7 @@ export class AvatarField extends Block<Props, Refs> {
   }
 
   protected render(): string {
-    const avatarSrc = `https://ya-praktikum.tech/api/v2/resources/${this.props.src}` || '/img/ava-default.png';
+    const avatarSrc = `https://ya-praktikum.tech/api/v2/resources/${this.props.src}` || "/img/ava-default.png";
     return (`
       <label class="profile__ava {{#if edit}}profile__ava_edit{{/if}}" >
         <img src="${avatarSrc}" alt="avatarImage">

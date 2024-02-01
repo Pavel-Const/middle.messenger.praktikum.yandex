@@ -1,16 +1,25 @@
 import Block from "../../core/Block";
 
 interface IProps {
+  id:number,
   name: string,
   time: string,
   count: string,
   my: boolean,
-  last: string
+  last: string,
+  onClick: (id:number) => void,
+  events: { click: (id:number) => void },
 }
 
 export class ChatItem extends Block<IProps> {
   constructor(props: IProps) {
-    super(props);
+    super({
+      ...props,
+      events: {
+        click: () => props.onClick(props.id)
+      }
+    });
+    console.log(props);
   }
 
   protected render(): string {
@@ -18,7 +27,7 @@ export class ChatItem extends Block<IProps> {
       name, time, count, my, last
     } = this.props;
     return (`
-            <div class="chatItem">
+            <div class="chatItem" >
                 <div class="chatItem__box">
                     <div class="chatItem__ava">
                     </div>

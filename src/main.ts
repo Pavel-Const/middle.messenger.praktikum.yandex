@@ -13,6 +13,7 @@ import {
   RegistrationPage
 } from "./pages";
 import { initApp } from "./services/initApp.ts";
+import { CreateChat } from "./components/createChat/createChat.ts";
 
 declare global {
   interface Window {
@@ -30,11 +31,6 @@ window.store = new Store<AppState>(initState);
 
 Handlebars.registerPartial("Form", Components.Form);
 
-/* Object.entries<Components>(Components)
-  .forEach(
-    ([componentName, component]) => registerComponent(componentName, component)
-  ); */
-
 registerComponent("Button", Components.Button);
 registerComponent("InputField", Components.InputField);
 registerComponent("Input", Components.Input);
@@ -44,9 +40,11 @@ registerComponent("ErrorBlock", Components.ErrorBlock);
 registerComponent("ProfileItem", Components.ProfileItem);
 registerComponent("ProfileInput", Components.ProfileInput);
 registerComponent("ChatItem", Components.ChatItem);
+registerComponent("MessageBlock", Components.MessageBlock);
 registerComponent("MessageItem", Components.MessageItem);
 registerComponent("Avatar", Components.Avatar);
 registerComponent("AvatarField", Components.AvatarField);
+registerComponent("CreateChat", Components.CreateChat);
 
 const router = new Router("#app");
 

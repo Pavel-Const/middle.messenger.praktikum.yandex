@@ -8,6 +8,8 @@ export { ErrorBlock } from "./errorBlock";
 export { ProfileItem } from "./profileItem";
 export { ProfileInput } from "./profileInput";
 export { ChatItem } from "./chatItem";
+export { MessageBlock } from "./messageBlock";
 export { MessageItem } from "./messageItem";
 export { Avatar } from "./avatar";
 export { AvatarField } from "./avatarField";
+export { CreateChat } from "./createChat";

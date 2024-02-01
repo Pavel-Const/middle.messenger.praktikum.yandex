@@ -1,7 +1,5 @@
 import ChatApi from "../api/chat";
 import { apiHasError } from "../utils/apiHasError";
-import { transformChats } from "../utils/apiTransformers";
-
 const chatApi = new ChatApi();
 
 const getChats = async () => {
@@ -9,8 +7,7 @@ const getChats = async () => {
   if (apiHasError(responseChat)) {
     throw Error(responseChat.reason);
   }
-
-  return transformChats(responseChat);
+  return JSON.parse(responseChat.response);
 };
 
 const createChat = async (title: string) => {

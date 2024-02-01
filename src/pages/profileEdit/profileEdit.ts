@@ -2,8 +2,8 @@ import Block from "../../core/Block";
 import * as validators from "../../utils/validators";
 import { ProfileItem } from "../../components";
 import { connect } from "../../utils/connect";
-import {EditUser} from "../../api/type.ts";
-import {editProfile} from "../../services/user.ts";
+import { EditUser } from "../../api/type.ts";
+import { editProfile } from "../../services/user.ts";
 
 interface Props {
   validate: {

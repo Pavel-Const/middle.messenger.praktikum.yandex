@@ -28,7 +28,7 @@
     font-weight: 500;
     line-height: 13px; /* 100% */
     padding-bottom: 7px;
-
+    z-index: 5;
     &::placeholder {
         color: var(--text-secondary-color);
     }
