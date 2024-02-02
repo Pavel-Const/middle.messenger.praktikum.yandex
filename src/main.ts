@@ -13,7 +13,6 @@ import {
   RegistrationPage
 } from "./pages";
 import { initApp } from "./services/initApp.ts";
-import { CreateChat } from "./components/createChat/createChat.ts";
 
 declare global {
   interface Window {
@@ -41,6 +40,7 @@ registerComponent("ProfileItem", Components.ProfileItem);
 registerComponent("ProfileInput", Components.ProfileInput);
 registerComponent("ChatItem", Components.ChatItem);
 registerComponent("MessageBlock", Components.MessageBlock);
+registerComponent("MessageHead", Components.MessageHead);
 registerComponent("MessageItem", Components.MessageItem);
 registerComponent("Avatar", Components.Avatar);
 registerComponent("AvatarField", Components.AvatarField);

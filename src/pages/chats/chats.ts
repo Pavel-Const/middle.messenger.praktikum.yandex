@@ -1,28 +1,34 @@
 import Block from "../../core/Block";
 import * as validators from "../../utils/validators";
-import { InputField } from "../../components";
-import { initChatPage } from "../../services/initApp.ts";
-import { connect } from "../../utils/connect.ts";
+import {ChatItem, InputField, MessageHead} from "../../components";
+import {initChatPage} from "../../services/initApp.ts";
+import {connect} from "../../utils/connect.ts";
 
 interface Props {
-    validate: {
-        login: (value: string) => boolean | string
-    },
-    onReg: (e: Event) => void,
+  validate: {
+    login: (value: string) => boolean | string
+  },
+  onReg: (e: Event) => void,
 }
 
 type Refs = {
-    message: InputField,
+  message: InputField,
+  messageHead: MessageHead,
+  chatItem: ChatItem,
 }
+
 class ChatsPage extends Block<Props, Refs> {
   constructor(props: Props) {
     super({
       ...props,
+      currentId: "",
       validate: {
         message: validators.message
       },
-      checkChat: (id: number) => {
-        console.log(id);
+      checkChat: (id: number, name: string) => {
+        console.log(id, name);
+        this.refs.messageHead.setProps({id, name});
+        this.refs.chatItem.setProps({...window.store.chats, currentId: id});
       },
       onSend: (event: Event) => {
         event.preventDefault();
@@ -34,7 +40,7 @@ class ChatsPage extends Block<Props, Refs> {
     });
     initChatPage();
   }
-
+  
   protected render(): string {
     return (`
       <div class="chat">
@@ -53,20 +59,13 @@ class ChatsPage extends Block<Props, Refs> {
           </div>
           <div class="chat__asideList">
             {{#each chats}}
-              {{{ ChatItem ava=this.avatar name=this.title last=this.last_message time=this.created_by count=this.unread_count id=id onClick=this.handleClick }}}
+              {{{ ChatItem ava=avatar name=title last=last_message time=created_by count=unread_count id=id currentId=../currentId onClick=../checkChat ref='chatItem'}}}
             {{/each}}
           </div>
       </div>
       <div class="chat__content">
-        <div class="chat__contentHead">
-          <div class="chat__box">
-            <div class="chat__contentAva"></div>
-            <div class="chat__contentName">Имя</div>
-          </div>
-          <div class="chat__contentOptions">
-            <img src="/img/svg/options-icon.svg" alt="options">
-          </div>
-        </div>
+          
+          {{{MessageHead ref='messageHead'}}}
           {{{MessageBlock }}}
         <div class="chat__contentBottom">
           <img src="/img/svg/message-options-icon.svg" alt="options">
@@ -78,5 +77,6 @@ class ChatsPage extends Block<Props, Refs> {
         `);
   }
 }
+
 // @ts-ignore
-export default connect(({ chats, user }) => ({ chats, user }))(ChatsPage);
+export default connect(({chats, user}) => ({chats, user}))(ChatsPage);

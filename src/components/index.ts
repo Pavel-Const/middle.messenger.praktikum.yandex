@@ -9,6 +9,7 @@ export { ProfileItem } from "./profileItem";
 export { ProfileInput } from "./profileInput";
 export { ChatItem } from "./chatItem";
 export { MessageBlock } from "./messageBlock";
+export { MessageHead } from "./messageHead";
 export { MessageItem } from "./messageItem";
 export { Avatar } from "./avatar";
 export { AvatarField } from "./avatarField";
