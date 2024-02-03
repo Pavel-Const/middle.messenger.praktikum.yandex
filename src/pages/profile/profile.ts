@@ -9,7 +9,6 @@ class ProfilePage extends Block<{}> {
       ...props,
       logout: logout
     });
-    console.log(props);
     initApp();
   }
 

@@ -2,7 +2,6 @@ import Block from "../../core/Block";
 
 interface IProps {
   id:number,
-  currentId:number,
   name: string,
   time: string,
   count: string,
@@ -17,18 +16,37 @@ export class ChatItem extends Block<IProps> {
     super({
       ...props,
       events: {
-        click: () => props.onClick(props.id, props.name)
+        click: (e: Event) => {
+          props.onClick(props.id, props.name);
+          const chatItemElement = (e.target as HTMLElement).closest(".chatItem");
+          if (!chatItemElement) return;
+          document.querySelectorAll(".chatItem").forEach((item) => {
+            item.classList.remove("chatItem_active");
+          });
+          const currentId = chatItemElement.getAttribute("data-id");
+          if (currentId) {
+            if (+currentId === props.id) {
+              chatItemElement.classList.add("chatItem_active");
+            } else {
+              chatItemElement.classList.remove("chatItem_active");
+            }
+          }
+        }
       }
     });
-    console.log(props);
   }
 
   protected render(): string {
     const {
-      name, time, count, my, last, currentId
+      name,
+      time,
+      count,
+      my,
+      last,
+      id
     } = this.props;
     return (`
-            <div class="chatItem {{#if currentId=id}}messageItem_my{{/if}}" >
+            <div class="chatItem" data-id="${id}">
                 <div class="chatItem__box">
                     <div class="chatItem__ava">
                     </div>

@@ -1,4 +1,3 @@
-import { LoginRequestData } from "../api/type.ts";
 import constants from "../constants";
 
 const METHODS = {
@@ -39,24 +38,100 @@ export class HTTPTransport {
     });
   };
 
-  post = (url: string, options?: { data: LoginRequestData }) => {
+  post = (url: string, options?: { data: any }) => {
     return this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.POST
     });
   };
 
-  put = (url: string, options?: {data: any}) => {
+  put = (url: string, options?: { data: any }) => {
     return this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.PUT
     });
   };
 
-  delete = (url: string, options: { timeout?: number } = {}) => {
+  delete = (url: string, options?: { data: any }) => {
     return this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.DELETE
+    });
+  };
+
+  createWebSocket = async (chatId: number, userId: number | undefined) => {
+    const resp = await this.post(`/token/${chatId}`);
+    const token = JSON.parse(resp.response).token;
+    const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
+
+    socket.addEventListener("open", () => {
+      console.log("Соединение установлено");
+
+      socket.send(JSON.stringify({
+        content: "0",
+        type: "get old"
+      }));
+      const sendBtn = document.querySelector(".chat__contentSend");
+      sendBtn?.addEventListener("click", () => {
+        const input: HTMLInputElement = document.querySelector(".chat__contentBottom input");
+        socket.send(JSON.stringify({
+          content: input?.value,
+          type: "message"
+        }));
+      });
+    });
+
+    socket.addEventListener("close", event => {
+      if (event.wasClean) {
+        console.log("Соединение закрыто чисто");
+      } else {
+        console.log("Обрыв соединения");
+      }
+
+      console.log(`Код: ${event.code} | Причина: ${event.reason}`);
+    });
+
+    socket.addEventListener("message", event => {
+      console.log("Получены данные", event.data);
+
+      const data = JSON.parse(event.data);
+      const state = window.store.getState();
+      if (Array.isArray(data)) {
+        window.store.set({
+          ...state,
+          messages: [...data] // Если data - массив, используем оператор spread для добавления его элементов
+        });
+      } else {
+        window.store.set({
+          ...state,
+          messages: [data, ...state.messages] // Если data - объект, добавляем его как один элемент
+        });
+      }
+      console.log(window.store.getState());
+      const sendBtn = document.querySelector(".chat__contentSend");
+      sendBtn?.addEventListener("click", () => {
+        const input: HTMLInputElement = document.querySelector(".chat__contentBottom input");
+        socket.send(JSON.stringify({
+          content: input?.value,
+          type: "message"
+        }));
+      });
+      /* window.store.set({ data }); */
+      /*       const messages = document.getElementById("chats");
+            const div = document.createElement("div");
+
+            div.classList.add("message");
+
+            if (data.user_id === me.id) {
+              div.classList.add("message_me");
+            }
+            div.innerText = data.content;
+
+            messages.append(div); */
+    });
+
+    socket.addEventListener("error", event => {
+      console.log("Ошибка", event.message);
     });
   };
 

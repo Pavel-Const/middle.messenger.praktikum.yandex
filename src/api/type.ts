@@ -30,6 +30,17 @@ export type EditPassword = {
 export type CreateChat = {
     title: string
 }
+export type DeleteChat = {
+    chatId: number
+}
+export type AddUserChat = {
+    "users": number[],
+    "chatId": number
+}
+export type WsChat = {
+    "userId": number,
+    "chatId": number
+}
 
 export type LoginRequestData = {
     login: string,

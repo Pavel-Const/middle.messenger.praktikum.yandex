@@ -1,8 +1,9 @@
 import Block from "../../core/Block";
 import * as validators from "../../utils/validators";
-import {ChatItem, InputField, MessageHead} from "../../components";
-import {initChatPage} from "../../services/initApp.ts";
-import {connect} from "../../utils/connect.ts";
+import { ChatItem, InputField, MessageHead } from "../../components";
+import { initChatPage } from "../../services/initApp.ts";
+import { connect } from "../../utils/connect.ts";
+import { addWsChat } from "../../services/chat.ts";
 
 interface Props {
   validate: {
@@ -21,14 +22,17 @@ class ChatsPage extends Block<Props, Refs> {
   constructor(props: Props) {
     super({
       ...props,
-      currentId: "",
       validate: {
         message: validators.message
       },
       checkChat: (id: number, name: string) => {
-        console.log(id, name);
-        this.refs.messageHead.setProps({id, name});
-        this.refs.chatItem.setProps({...window.store.chats, currentId: id});
+        this.refs.messageHead.setProps({ id, name });
+        addWsChat(id, window.store.state.user?.id);
+        const state = window.store.getState();
+        window.store.set({
+          ...state,
+          messages: []
+        });
       },
       onSend: (event: Event) => {
         event.preventDefault();
@@ -40,7 +44,7 @@ class ChatsPage extends Block<Props, Refs> {
     });
     initChatPage();
   }
-  
+
   protected render(): string {
     return (`
       <div class="chat">
@@ -59,18 +63,21 @@ class ChatsPage extends Block<Props, Refs> {
           </div>
           <div class="chat__asideList">
             {{#each chats}}
-              {{{ ChatItem ava=avatar name=title last=last_message time=created_by count=unread_count id=id currentId=../currentId onClick=../checkChat ref='chatItem'}}}
+              {{{ ChatItem ava=avatar name=title last=last_message.content time=created_by count=unread_count id=id onClick=../checkChat ref='chatItem'}}}
             {{/each}}
           </div>
       </div>
       <div class="chat__content">
           
           {{{MessageHead ref='messageHead'}}}
-          {{{MessageBlock }}}
+          {{{MessageBlock messages=messages}}}
         <div class="chat__contentBottom">
           <img src="/img/svg/message-options-icon.svg" alt="options">
           {{{InputField type="text" label="" name="message" ref="message" validate=validate.message}}}
-          {{{ Button label="" onClick=onSend type='send' className='chat__contentSend'}}}
+          <button class='chat__contentSend'>
+            +++
+          </button>
+
         </div>
         </div>
       </div>
@@ -79,4 +86,4 @@ class ChatsPage extends Block<Props, Refs> {
 }
 
 // @ts-ignore
-export default connect(({chats, user}) => ({chats, user}))(ChatsPage);
+export default connect(({ chats, user, messages }) => ({ chats, user, messages }))(ChatsPage);

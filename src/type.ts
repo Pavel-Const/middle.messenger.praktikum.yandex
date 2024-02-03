@@ -27,6 +27,6 @@ export type Chat = {
 export type AppState = {
     error: string | null,
     user: User | null,
-    isOpenDialogChat: boolean,
+    messages: any[],
     chats: Chat[]
 }

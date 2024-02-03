@@ -23,8 +23,8 @@ declare global {
 const initState: AppState = {
   error: null,
   user: null,
-  isOpenDialogChat: false,
-  chats: []
+  chats: [],
+  messages: []
 };
 window.store = new Store<AppState>(initState);
 

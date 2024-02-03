@@ -1,5 +1,4 @@
 import { getUser } from "./auth";
-/* import { getChats } from "./chat"; */
 import Router from "../core/Router.ts";
 import { getChats } from "./chat.ts";
 
@@ -14,14 +13,21 @@ const initApp = async () => {
     return;
   }
 
-  /* const chats = await getChats(); */
-  window.store.set({ user: me /* chats */ });
+  const chats = await getChats();
+  window.store.set({ user: me, chats });
   /* router.go("/settings"); */
 };
 
 const initChatPage = async () => {
+  let me = null;
+  try {
+    me = await getUser();
+  } catch (error) {
+    router.go("/");
+    return;
+  }
   const chats = await getChats();
-  window.store.set({ chats });
+  window.store.set({ user: me, chats });
 };
 
 export {
