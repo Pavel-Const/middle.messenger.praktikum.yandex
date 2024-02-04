@@ -15,7 +15,18 @@ const initApp = async () => {
 
   const chats = await getChats();
   window.store.set({ user: me, chats });
-  /* router.go("/settings"); */
+  router.go("/messenger");
+};
+const initProfile = async () => {
+  let me = null;
+  try {
+    me = await getUser();
+  } catch (error) {
+    console.error(error);
+    router.go("/");
+    return;
+  }
+  window.store.set({ user: me });
 };
 
 const initChatPage = async () => {
@@ -32,5 +43,6 @@ const initChatPage = async () => {
 
 export {
   initApp,
-  initChatPage
+  initChatPage,
+  initProfile
 };

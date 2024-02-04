@@ -45,7 +45,7 @@ export class RegistrationPage extends Block<Props, Refs> {
         if (!newUser.password || !newUser.email || !newUser.login || !newUser.phone || !newUser.first_name || !newUser.second_name) {
           return;
         }
-        signup(newUser).catch(error => console.log(error) /* this.refs.errorLine.setProps({error}) */);
+        signup(newUser).catch(error => console.error(error));
       }
     });
   }

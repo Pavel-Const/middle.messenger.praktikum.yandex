@@ -5,6 +5,7 @@ import { connect } from "../../utils/connect";
 import { EditUser } from "../../api/type.ts";
 import { editProfile } from "../../services/user.ts";
 import { AppState } from "../../type.ts";
+import { initProfile } from "../../services/initApp.ts";
 
 interface Props extends Partial<AppState> {
   validate: {
@@ -50,9 +51,10 @@ export class ProfileEditPage extends Block<Props, Refs> {
         if (!user.email || !user.login || !user.phone || !user.first_name || !user.second_name || !user.display_name) {
           return;
         }
-        editProfile(user).catch(error => console.log(error) /* this.refs.errorLine.setProps({error}) */);
+        editProfile(user).catch(error => console.error(error));
       }
     });
+    initProfile();
   }
 
   protected render(): string {

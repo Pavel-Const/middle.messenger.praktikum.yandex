@@ -164,7 +164,7 @@ export class HTTPTransport {
         if (xhr.status >= 200 && xhr.status < 300) {
           resolve(xhr);
         } else {
-          reject(new Error(`Request failed with status ${xhr.status}: ${xhr.statusText}`));
+          reject(new Error(`${JSON.parse(xhr.response).reason}`));
         }
       };
       xhr.onabort = () => reject(new Error("Request was aborted by the user"));

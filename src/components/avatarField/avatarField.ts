@@ -24,7 +24,6 @@ export class AvatarField extends Block<Props, Refs> {
         this.uploadAvatar(file);
       }
     });
-    console.log(this.props.src);
   }
 
   previewAvatar(file: File): void {

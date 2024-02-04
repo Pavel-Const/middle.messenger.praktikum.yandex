@@ -22,11 +22,8 @@ const signin = async (data: LoginRequestData) => {
   if (apiHasError(response)) {
     throw Error(response.reason);
   }
-
   const me = await getUser();
-
   window.store.set({ user: me });
-  /* navigate("emails"); */
   router.go("/messenger");
 };
 

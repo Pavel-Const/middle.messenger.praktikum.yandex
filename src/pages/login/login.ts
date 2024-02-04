@@ -35,7 +35,7 @@ export class LoginPage extends Block<Props, Refs> {
         signin({
           login,
           password
-        }).catch(error => console.log(error) /* this.refs.error.setProps({ error }) */);
+        }).catch(error => console.error(error));
       }
     });
   }
