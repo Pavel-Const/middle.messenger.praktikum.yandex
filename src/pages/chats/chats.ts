@@ -4,8 +4,9 @@ import { ChatItem, InputField, MessageHead } from "../../components";
 import { initChatPage } from "../../services/initApp.ts";
 import { connect } from "../../utils/connect.ts";
 import { addWsChat } from "../../services/chat.ts";
+import { AppState } from "../../type.ts";
 
-interface Props {
+interface Props extends Partial<AppState> {
   validate: {
     login: (value: string) => boolean | string
   },
@@ -78,5 +79,4 @@ class ChatsPage extends Block<Props, Refs> {
   }
 }
 
-// @ts-ignore
 export default connect(({ chats, user, messages }) => ({ chats, user, messages }))(ChatsPage);

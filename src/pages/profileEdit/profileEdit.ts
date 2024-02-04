@@ -4,8 +4,9 @@ import { ProfileItem } from "../../components";
 import { connect } from "../../utils/connect";
 import { EditUser } from "../../api/type.ts";
 import { editProfile } from "../../services/user.ts";
+import { AppState } from "../../type.ts";
 
-interface Props {
+interface Props extends Partial<AppState> {
   validate: {
     login: (value: string) => boolean | string
   },
@@ -85,5 +86,4 @@ export class ProfileEditPage extends Block<Props, Refs> {
   }
 }
 
-// @ts-ignore
 export default connect(({ user }) => ({ user }))(ProfileEditPage);
