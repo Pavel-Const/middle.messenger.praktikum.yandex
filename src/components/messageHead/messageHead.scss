@@ -1,55 +1,6 @@
-.messageItem{
-    max-width: 402px;
-    min-width: 114px;
-    padding: 11px;
-    position: relative;
-    border-radius: 0 12px 12px;
-    background-color: var(--gray-dark-color);
-
-    &_my{
-        border-radius: 12px 12px 0;
-        background-color: var(--second-color);
-        align-self: flex-end;
-        margin-top: 18px;
-
-        .messageItem__time{
-            color: var(--main-color);
-
-            img{
-                display: block;
-            }
-        }
-    }
-
-    &__text{
-        color: var(--text-color);
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 15px; /* 125% */
-    }
-
-    &__time{
-        position: absolute;
-        right: 11px;
-        bottom: 11px;
-        color: var(--text-secondary-color);
-        text-align: right;
-        font-size: 9px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 9px; /* 100% */
-        display: flex;
-        align-items: flex-end;
-        gap: 4px;
-
-        img{
-            display: none;
-        }
-    }
-}
 .chatAddUser{
     position: relative;
+
     &__hover{
         position: absolute;
         top: 100%;
@@ -65,6 +16,7 @@
         border-radius: 12px;
         border: 1px solid var(--main-color);
     }
+
     &__btn{
         color: var(--main-color);
         font-size: 11px;
@@ -73,6 +25,7 @@
         line-height: 11px; /* 100% */
         cursor: pointer;
     }
+
     &__field{
         position: relative;
         margin-bottom: 20px;
@@ -80,8 +33,15 @@
         display: flex;
         flex-direction: column;
     }
+
     &__btnToggle:checked + .chatAddUser__hover{
         opacity: 1;
         visibility: visible;
     }
+}
+
+.chat__contentNone{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

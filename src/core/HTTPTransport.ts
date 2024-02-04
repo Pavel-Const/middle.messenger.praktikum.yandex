@@ -13,6 +13,9 @@ interface IRequest {
   data?: any;
 }
 
+interface TokenResponse {
+  token: string;
+}
 function queryStringify(data: { [key: string]: string }) {
   if (typeof data !== "object") {
     throw new Error("Data must be object");
@@ -60,8 +63,8 @@ export class HTTPTransport {
   };
 
   createWebSocket = async (chatId: number, userId: number | undefined) => {
-    const resp = await this.post(`/token/${chatId}`);
-    const token = JSON.parse(resp.response).token;
+    const resp = await this.post(`/token/${chatId}`) as { response: string };
+    const token = JSON.parse(resp.response).token as TokenResponse;
     const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
 
     socket.addEventListener("open", () => {
@@ -73,7 +76,7 @@ export class HTTPTransport {
       }));
       const sendBtn = document.querySelector(".chat__contentSend");
       sendBtn?.addEventListener("click", () => {
-        const input: HTMLInputElement = document.querySelector(".chat__contentBottom input");
+        const input: HTMLInputElement = document.querySelector(".chat__contentBottom input") as HTMLInputElement;
         socket.send(JSON.stringify({
           content: input?.value,
           type: "message"
@@ -110,28 +113,18 @@ export class HTTPTransport {
       console.log(window.store.getState());
       const sendBtn = document.querySelector(".chat__contentSend");
       sendBtn?.addEventListener("click", () => {
-        const input: HTMLInputElement = document.querySelector(".chat__contentBottom input");
-        socket.send(JSON.stringify({
-          content: input?.value,
-          type: "message"
-        }));
+        const input: HTMLInputElement = document.querySelector(".chat__contentBottom input") as HTMLInputElement;
+        if (input.value.trim().length > 0) {
+          socket.send(JSON.stringify({
+            content: input?.value,
+            type: "message"
+          }));
+        }
       });
-      /* window.store.set({ data }); */
-      /*       const messages = document.getElementById("chats");
-            const div = document.createElement("div");
-
-            div.classList.add("message");
-
-            if (data.user_id === me.id) {
-              div.classList.add("message_me");
-            }
-            div.innerText = data.content;
-
-            messages.append(div); */
     });
 
     socket.addEventListener("error", event => {
-      console.log("Ошибка", event.message);
+      console.log("Ошибка", event);
     });
   };
 

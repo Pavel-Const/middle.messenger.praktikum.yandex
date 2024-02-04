@@ -20,13 +20,14 @@ export class MessageHead extends Block<IProps, Refs> {
         message: validators.message
       },
       onDelete: () => {
-        deleteChat(this.props.id)
-          .then(() => {
-
-          })
-          .catch(error => /* this.refs.createChat.setError(error) */ {
-            console.log(error);
-          });
+        if (window.store.state.currentChat.id) {
+          deleteChat(window.store.state.currentChat.id)
+            .then(() => {
+            })
+            .catch(error => /* this.refs.createChat.setError(error) */ {
+              console.log(error);
+            });
+        }
       },
       onSave: () => {
         const value: string = (this.refs.input.element as HTMLInputElement)?.value;
@@ -34,26 +35,31 @@ export class MessageHead extends Block<IProps, Refs> {
           this.refs.error.setProps({ error: "Поле не может быть пустым" });
           return;
         }
-        addUserChat(this.props.id, +value)
-          .then(() => {
-            const check = document.querySelector(".createChat__btnToggle") as HTMLInputElement;
-            if (check !== null) {
-              check.checked = false;
-            }
-          })
-          .catch(error => /* this.refs.createChat.setError(error) */ {
-            console.log(error);
-          });
+        if (window.store.state.currentChat.id) {
+          addUserChat(window.store.state.currentChat.id, +value)
+            .then(() => {
+              const check = document.querySelector(".createChat__btnToggle") as HTMLInputElement;
+              if (check !== null) {
+                check.checked = false;
+              }
+            })
+            .catch(error => /* this.refs.createChat.setError(error) */ {
+              console.log(error);
+            });
+        }
       }
     });
   }
 
   protected render(): string {
-    return (`
+    // Проверяем, есть ли id у текущего чата
+    if (window.store.state.currentChat.id) {
+      // Если id есть, рендерим содержимое
+      return (`
       <div class="chat__contentHead">
         <div class="chat__box">
           <div class="chat__contentAva"></div>
-          <div class="chat__contentName" >${this.props.name}</div>
+          <div class="chat__contentName">${window.store.state.currentChat.name}</div>
         </div>
         <div class="chat__contentOptions">
           <div class="chatAddUser">
@@ -62,7 +68,7 @@ export class MessageHead extends Block<IProps, Refs> {
             </label>
             <input type="checkbox" class="chatAddUser__btnToggle" id="modal-add" hidden>
             <div class="chatAddUser__hover ">
-              <div class="chatAddUser__field ">
+              <div class="chatAddUser__field">
                         {{{ Input
                                 type=type
                                 ref="input"
@@ -78,6 +84,8 @@ export class MessageHead extends Block<IProps, Refs> {
           {{{ Button label="Удалить чат" onClick=onDelete}}}
         </div>
       </div>
-      `);
+    `);
+    }
+    return "<div class='chat__contentNone'>Выберите чат для отображения деталей</div>";
   }
 }

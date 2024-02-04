@@ -14,6 +14,16 @@ type LastMessage = {
     time: string,
     content: string
 }
+type Message = {
+    chat_id: number,
+    content: string,
+    file: null,
+    id: number,
+    is_read: boolean,
+    time: string,
+    type: string,
+    user_id: number
+}
 
 export type Chat = {
     id: number,
@@ -27,6 +37,10 @@ export type Chat = {
 export type AppState = {
     error: string | null,
     user: User | null,
-    messages: any[],
-    chats: Chat[]
+    messages: Message[],
+    chats: Chat[],
+    currentChat: {
+        id: number | null,
+        name: string
+    }
 }

@@ -279,22 +279,7 @@
         gap: 25px;
     }
 
-    &__contentBody {
-        position: relative;
-        flex: 1;
-        display: flex;
-        flex-direction: column-reverse;
-        gap: 10px;
-        overflow: auto;
-        padding: 20px 0;
 
-        /* ie 10+ */
-        -ms-overflow-style: none;
-
-        &::-webkit-scrollbar {
-            width: 0;
-        }
-    }
 
     &__contentDate {
         position: absolute;

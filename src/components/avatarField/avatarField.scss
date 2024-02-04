@@ -9,8 +9,10 @@
         align-items: center;
         justify-content: center;
         position: relative;
+
         &_edit {
         cursor: pointer;
+
             &:hover {
                 .profile__avaHov {
                     opacity: 1;

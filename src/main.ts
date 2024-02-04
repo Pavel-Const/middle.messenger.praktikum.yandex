@@ -24,7 +24,11 @@ const initState: AppState = {
   error: null,
   user: null,
   chats: [],
-  messages: []
+  messages: [],
+  currentChat: {
+    id: null,
+    name: ""
+  }
 };
 window.store = new Store<AppState>(initState);
 

@@ -26,19 +26,15 @@ class ChatsPage extends Block<Props, Refs> {
         message: validators.message
       },
       checkChat: (id: number, name: string) => {
-        this.refs.messageHead.setProps({ id, name });
         addWsChat(id, window.store.state.user?.id);
         const state = window.store.getState();
         window.store.set({
           ...state,
-          messages: []
-        });
-      },
-      onSend: (event: Event) => {
-        event.preventDefault();
-        const message = this.refs.message.value();
-        console.log({
-          message
+          messages: [],
+          currentChat: {
+            id: id,
+            name: name
+          }
         });
       }
     });
@@ -74,10 +70,7 @@ class ChatsPage extends Block<Props, Refs> {
         <div class="chat__contentBottom">
           <img src="/img/svg/message-options-icon.svg" alt="options">
           {{{InputField type="text" label="" name="message" ref="message" validate=validate.message}}}
-          <button class='chat__contentSend'>
-            +++
-          </button>
-
+          {{{ Button label="" type='send' className='chat__contentSend'}}}
         </div>
         </div>
       </div>

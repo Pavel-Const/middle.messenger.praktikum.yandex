@@ -1,6 +1,6 @@
 import Route from "./Route.ts";
 
-type RouteBlockConstructor = new () => any; // Замените 'any' на более конкретный тип, соответствующий конструктору блока
+type RouteBlockConstructor = new (props?: any) => any; // Замените 'any' на более конкретный тип, соответствующий конструктору блока
 
 class Router {
   // eslint-disable-next-line no-use-before-define

@@ -1,50 +1,18 @@
-.messageItem{
-    max-width: 402px;
-    min-width: 114px;
-    padding: 11px;
-    position: relative;
-    border-radius: 0 12px 12px;
-    background-color: var(--gray-dark-color);
-
-    &_my{
-        border-radius: 12px 12px 0;
-        background-color: var(--second-color);
-        align-self: flex-end;
-        margin-top: 18px;
-
-        .messageItem__time{
-            color: var(--main-color);
-
-            img{
-                display: block;
-            }
-        }
-    }
-
-    &__text{
-        color: var(--text-color);
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 15px; /* 125% */
-    }
-
-    &__time{
-        position: absolute;
-        right: 11px;
-        bottom: 11px;
-        color: var(--text-secondary-color);
-        text-align: right;
-        font-size: 9px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 9px; /* 100% */
+.chat {
+    &__contentBody {
+        position: relative;
+        flex: 1;
         display: flex;
-        align-items: flex-end;
-        gap: 4px;
+        flex-direction: column-reverse;
+        gap: 10px;
+        overflow: auto;
+        padding: 20px 0;
 
-        img{
-            display: none;
+        /* ie 10+ */
+        -ms-overflow-style: none;
+
+        &::-webkit-scrollbar {
+            width: 0;
         }
     }
 }

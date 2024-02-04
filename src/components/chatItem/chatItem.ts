@@ -16,21 +16,8 @@ export class ChatItem extends Block<IProps> {
     super({
       ...props,
       events: {
-        click: (e: Event) => {
+        click: () => {
           props.onClick(props.id, props.name);
-          const chatItemElement = (e.target as HTMLElement).closest(".chatItem");
-          if (!chatItemElement) return;
-          document.querySelectorAll(".chatItem").forEach((item) => {
-            item.classList.remove("chatItem_active");
-          });
-          const currentId = chatItemElement.getAttribute("data-id");
-          if (currentId) {
-            if (+currentId === props.id) {
-              chatItemElement.classList.add("chatItem_active");
-            } else {
-              chatItemElement.classList.remove("chatItem_active");
-            }
-          }
         }
       }
     });
@@ -46,7 +33,7 @@ export class ChatItem extends Block<IProps> {
       id
     } = this.props;
     return (`
-            <div class="chatItem" data-id="${id}">
+            <div class="chatItem ${window.store.state.currentChat.id === id ? "chatItem_active" : ""}">
                 <div class="chatItem__box">
                     <div class="chatItem__ava">
                     </div>

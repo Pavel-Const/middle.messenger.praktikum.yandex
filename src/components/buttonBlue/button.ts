@@ -5,8 +5,8 @@ interface Props {
   label: string,
   type: string,
   page?: string,
-  onClick: () => void,
-  events: { click: (e: Event) => void },
+  onClick?: () => void,
+  events: { click?: (e: Event) => void },
 }
 
 export class Button extends Block<Props> {
