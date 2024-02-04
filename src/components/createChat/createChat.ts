@@ -36,8 +36,8 @@ export class CreateChat extends Block<Props, Refs> {
               check.checked = false;
             }
           })
-          .catch(error => /* this.refs.createChat.setError(error) */ {
-            console.log(error);
+          .catch(error => {
+            console.error(error);
           });
       }
     });

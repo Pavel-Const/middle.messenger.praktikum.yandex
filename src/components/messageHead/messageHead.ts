@@ -24,8 +24,8 @@ export class MessageHead extends Block<IProps, Refs> {
           deleteChat(window.store.state.currentChat.id)
             .then(() => {
             })
-            .catch(error => /* this.refs.createChat.setError(error) */ {
-              console.log(error);
+            .catch(error => {
+              console.error(error);
             });
         }
       },
@@ -43,8 +43,8 @@ export class MessageHead extends Block<IProps, Refs> {
                 check.checked = false;
               }
             })
-            .catch(error => /* this.refs.createChat.setError(error) */ {
-              console.log(error);
+            .catch(error => {
+              console.error(error);
             });
         }
       }

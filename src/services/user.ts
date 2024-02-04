@@ -19,8 +19,7 @@ const editProfile = async (data: EditUser) => {
   if (apiHasError(response)) {
     throw Error(response.reason);
   }
-  console.log(response);
-  /* window.store.set({ user: me }); */
+
   router.go("/settings");
 };
 const editAvatar = async (data: FormData) => {
@@ -28,8 +27,6 @@ const editAvatar = async (data: FormData) => {
   if (apiHasError(response)) {
     throw Error(response.reason);
   }
-  console.log(response);
-  /* window.store.set({ user: me }); */
   router.go("/settings");
 };
 const editPassword = async (data: EditPassword) => {
@@ -37,8 +34,6 @@ const editPassword = async (data: EditPassword) => {
   if (apiHasError(response)) {
     throw Error(response.reason);
   }
-  console.log(response);
-  /* window.store.set({ user: me }); */
   router.go("/settings");
 };
 
