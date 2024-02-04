@@ -6,12 +6,15 @@ import Router from "../core/Router.ts";
 
 const authApi = new AuthApi();
 const router = new Router("#app");
+// eslint-disable-next-line consistent-return
 const getUser = async () => {
   const responseUser = await authApi.me();
   if (apiHasError(responseUser)) {
     throw Error(responseUser.reason);
   }
-  return transformUser(JSON.parse(responseUser.response) as UserDTO);
+  if (responseUser.response) {
+    return transformUser(JSON.parse(responseUser.response) as UserDTO);
+  }
 };
 
 const signin = async (data: LoginRequestData) => {

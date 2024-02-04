@@ -14,7 +14,7 @@ class Block<Props extends object, Refs extends Ref = Ref> {
     FLOW_RENDER: "flow:render"
   };
 
-  public id: number = nanoid(6);
+  public id: string = nanoid(6);
 
   protected props: Props;
 

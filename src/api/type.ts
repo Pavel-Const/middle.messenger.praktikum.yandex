@@ -7,6 +7,7 @@ export type SignUpResponse = {
 }
 
 export type UserDTO = {
+    response?: string;
     id: number;
     login: string;
     first_name: string;
