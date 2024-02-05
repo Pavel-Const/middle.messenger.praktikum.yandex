@@ -24,6 +24,12 @@ export default class ChatApi {
   }): Promise<ChatDTO[] | APIError> {
     return chatApi.put("/users", { data }) as Promise<ChatDTO[] | APIError>;
   }
+  async removeUser(data: {
+    chatId: number;
+    users: (number | undefined)[]
+  }): Promise<ChatDTO[] | APIError> {
+    return chatApi.delete("/users", { data }) as Promise<ChatDTO[] | APIError>;
+  }
 
   async createWS(data: { chatId: number; userId: number | undefined }): Promise<void | APIError> {
     return chatApi.createWebSocket(data.chatId, data.userId);

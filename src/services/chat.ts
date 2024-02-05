@@ -35,21 +35,33 @@ const deleteChat = async (chatId: number) => {
   if (apiHasError(responseChat)) {
     throw Error(responseChat.reason);
   }
-
+  
   const chats = await getChats();
   window.store.set({ chats });
 };
 const addUserChat = async (chatId: number, userId: number | undefined) => {
-  const response = await chatApi.addUser({ users: [userId], chatId });
+  const response = await chatApi.addUser({
+    users: [userId],
+    chatId
+  });
   if (apiHasError(response)) {
     throw Error(response.reason);
   }
-
+};
+const removeUserChat = async (chatId: number, userId: number | undefined) => {
+  const response = await chatApi.removeUser({
+    users: [userId],
+    chatId
+  });
+  if (apiHasError(response)) {
+    throw Error(response.reason);
+  }
+  
   const responseChat = await chatApi.getChats();
   if (apiHasError(responseChat)) {
     throw Error(responseChat.reason);
   }
-
+  
   const chats = await getChats();
   window.store.set({ chats });
 };
@@ -74,5 +86,6 @@ export {
   getChats,
   deleteChat,
   addUserChat,
-  addWsChat
+  addWsChat,
+  removeUserChat
 };
