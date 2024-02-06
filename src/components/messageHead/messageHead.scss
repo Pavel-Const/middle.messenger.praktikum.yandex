@@ -1,0 +1,89 @@
+.chatAddUser{
+    position: relative;
+
+    &__hover{
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 300px;
+        height: 120px;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s, all;
+        background-color: white;
+        z-index: 5;
+        padding:20px 10px;
+        border-radius: 12px;
+        border: 1px solid var(--main-color);
+    }
+
+    &__btn{
+        color: var(--main-color);
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 11px; /* 100% */
+        cursor: pointer;
+    }
+
+    &__field{
+        position: relative;
+        margin-bottom: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__btnToggle:checked + .chatAddUser__hover{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.chatRemoveUser{
+    position: relative;
+
+    &__hover{
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 300px;
+        height: 120px;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s, all;
+        background-color: white;
+        z-index: 5;
+        padding:20px 10px;
+        border-radius: 12px;
+        border: 1px solid var(--main-color);
+    }
+
+    &__btn{
+        color: var(--main-color);
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 11px; /* 100% */
+        cursor: pointer;
+    }
+
+    &__field{
+        position: relative;
+        margin-bottom: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__btnToggle:checked + .chatRemoveUser__hover{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.chat__contentNone{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

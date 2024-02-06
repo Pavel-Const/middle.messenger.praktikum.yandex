@@ -1,16 +1,36 @@
 import Handlebars from "handlebars";
 import * as Components from "./components";
 import { registerComponent } from "./core/registerComponent.ts";
-import { navigate } from "./core/navigate";
+import Router from "./core/Router.ts";
+import { AppState } from "./type";
+import { Store } from "./core/Store.ts";
+import {
+  ChatsPage,
+  LoginPage,
+  PasswordEditPage,
+  ProfileEditPage,
+  ProfilePage,
+  RegistrationPage
+} from "./pages";
+import { initApp } from "./services/initApp.ts";
 
-/* Object.entries(Components).forEach(([ name, component ]) => {
-  if(['Input', 'Button'].includes(name)) {
-    registerComponent(name, component);
-    return;
+declare global {
+  interface Window {
+    store: Store<AppState>;
   }
-  Handlebars.registerPartial(name, component);
+}
 
-}); */
+const initState: AppState = {
+  error: null,
+  user: null,
+  chats: [],
+  messages: [],
+  currentChat: {
+    id: null,
+    name: ""
+  }
+};
+window.store = new Store<AppState>(initState);
 
 Handlebars.registerPartial("Form", Components.Form);
 
@@ -23,15 +43,26 @@ registerComponent("ErrorBlock", Components.ErrorBlock);
 registerComponent("ProfileItem", Components.ProfileItem);
 registerComponent("ProfileInput", Components.ProfileInput);
 registerComponent("ChatItem", Components.ChatItem);
+registerComponent("MessageBlock", Components.MessageBlock);
+registerComponent("MessageHead", Components.MessageHead);
 registerComponent("MessageItem", Components.MessageItem);
+registerComponent("Avatar", Components.Avatar);
+registerComponent("AvatarField", Components.AvatarField);
+registerComponent("CreateChat", Components.CreateChat);
 
-document.addEventListener("DOMContentLoaded", () => navigate("login"));
+const router = new Router("#app");
 
+router.use("/", LoginPage)
+  .use("/sign-up", RegistrationPage)
+  .use("/settings", ProfilePage)
+  .use("/settings-edit", ProfileEditPage)
+  .use("/settings-password", PasswordEditPage)
+  .use("/messenger", ChatsPage)
+  .start();
 document.addEventListener("click", e => {
   const page = (e.target as HTMLElement)?.getAttribute("page");
   if (page) {
-    navigate(page);
-    e.preventDefault();
-    e.stopImmediatePropagation();
+    router.go(page);
   }
 });
+document.addEventListener("DOMContentLoaded", () => initApp());

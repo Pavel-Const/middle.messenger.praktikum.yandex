@@ -1,3 +1,5 @@
+import constants from "../constants";
+
 const METHODS = {
   GET: "GET",
   POST: "POST",
@@ -9,7 +11,6 @@ interface IRequest {
   headers?: { [key: string]: string };
   method?: string;
   data?: any;
-  timeout?: number;
 }
 
 function queryStringify(data: { [key: string]: string }) {
@@ -23,33 +24,39 @@ function queryStringify(data: { [key: string]: string }) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-class HTTPTransport {
+export class HTTPTransport {
+  private apiUrl: string = "";
+
+  constructor(apiPath: string) {
+    this.apiUrl = `${constants.HOST}${apiPath}`;
+  }
+
   get = (url: string, options: IRequest = {}) => {
-    return this.request(url, {
+    return this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.GET
-    }, options.timeout);
+    });
   };
 
-  post = (url: string, options: { timeout?: number } = {}) => {
-    return this.request(url, {
+  post = (url: string, options?: { data: any }) => {
+    return this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.POST
-    }, options.timeout);
+    });
   };
 
-  put = (url: string, options: { timeout?: number } = {}) => {
-    return this.request(url, {
+  put = (url: string, options?: { data: any }) => {
+    return this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.PUT
-    }, options.timeout);
+    });
   };
 
-  delete = (url: string, options: { timeout?: number } = {}) => {
-    return this.request(url, {
+  delete = (url: string, options?: { data: any }) => {
+    return this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.DELETE
-    }, options.timeout);
+    });
   };
 
   request = (url: string, options: IRequest = {}, timeout = 5000) => {
@@ -67,25 +74,38 @@ class HTTPTransport {
       const isGet = method === METHODS.GET;
       xhr.open(
         method,
-        isGet && !!data
+        isGet && !!data && !(data instanceof FormData)
           ? `${url}${queryStringify(data)}`
           : url,
+        true
       );
-      Object.keys(headers)
-        .forEach(key => {
+      xhr.withCredentials = true;
+
+      if (!(data instanceof FormData)) {
+        // Задайте заголовок Content-Type только если он явно указан
+        // По умолчанию установите "application/json"
+        if (!headers["Content-Type"]) {
+          headers["Content-Type"] = "application/json";
+        }
+        Object.keys(headers).forEach(key => {
           xhr.setRequestHeader(key, headers[key]);
         });
+      }
       xhr.onload = function () {
-        resolve(xhr);
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(xhr);
+        } else {
+          reject(new Error(`${JSON.parse(xhr.response).reason}`));
+        }
       };
-      xhr.onabort = reject;
-      xhr.onerror = reject;
+      xhr.onabort = () => reject(new Error("Request was aborted by the user"));
+      xhr.onerror = () => reject(new Error("Network error occurred"));
+      xhr.ontimeout = () => reject(new Error("Request timed out"));
       xhr.timeout = timeout;
-      xhr.ontimeout = reject;
       if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(data);
+        xhr.send(data instanceof FormData ? data : JSON.stringify(data));
       }
     });
   };

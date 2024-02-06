@@ -1,6 +1,8 @@
 import Block from "../../core/Block";
+import { CreateUser } from "../../api/type";
 import * as validators from "../../utils/validators";
 import { InputField } from "../../components";
+import { signup } from "../../services/auth";
 
 interface Props {
   validate: {
@@ -31,22 +33,19 @@ export class RegistrationPage extends Block<Props, Refs> {
       },
       onReg: (event: Event) => {
         event.preventDefault();
-        const login = this.refs.login.value();
-        const password = this.refs.password.value();
-        const email = this.refs.email.value();
-        const first_name = this.refs.first_name.value();
-        const second_name = this.refs.second_name.value();
-        const phone = this.refs.phone.value();
-        const repeatPassword = this.refs.repeatPassword.value();
-        console.log({
-          login,
-          password,
-          email,
-          first_name,
-          second_name,
-          phone,
-          repeatPassword
-        });
+
+        const newUser: CreateUser = {
+          login: this.refs.login.value()!,
+          first_name: this.refs.first_name.value()!,
+          second_name: this.refs.second_name.value()!,
+          email: this.refs.email.value()!,
+          phone: this.refs.phone.value()!,
+          password: this.refs.password.value()!
+        };
+        if (!newUser.password || !newUser.email || !newUser.login || !newUser.phone || !newUser.first_name || !newUser.second_name) {
+          return;
+        }
+        signup(newUser).catch(error => console.error(error));
       }
     });
   }
@@ -69,7 +68,7 @@ export class RegistrationPage extends Block<Props, Refs> {
                     </div>
                     <div class="formBlock__actions">
                         {{{ Button label="Зарегистрироваться" onClick=onReg}}}
-                        {{{ Link label="Войти" page="login"}}}
+                        {{{ Link label="Войти" page="/"}}}
                     </div>
                 {{/Form}}
             </div>

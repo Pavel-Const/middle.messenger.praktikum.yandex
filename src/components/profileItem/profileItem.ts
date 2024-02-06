@@ -61,7 +61,7 @@ export class ProfileItem extends Block<Props, Refs> {
       label
     } = this.props;
     return (`
-            <li class="profileItem">
+           <li class="profileItem">
                 <div class="profileName">${label}</div>
                 {{{ProfileInput ref='input' value=value edit=edit name=name type=type onBlur=onBlur}}}
             </li>

@@ -14,7 +14,7 @@ class Block<Props extends object, Refs extends Ref = Ref> {
     FLOW_RENDER: "flow:render"
   };
 
-  public id = nanoid(6);
+  public id: string = nanoid(6);
 
   protected props: Props;
 
@@ -111,6 +111,10 @@ class Block<Props extends object, Refs extends Ref = Ref> {
   componentDidMount() {
   }
 
+  componentWillUnmount() {
+
+  }
+
   public dispatchComponentDidMount() {
     this.eventBus()
       .emit(Block.EVENTS.FLOW_CDM);
@@ -127,7 +131,7 @@ class Block<Props extends object, Refs extends Ref = Ref> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  private componentDidUpdate(_oldProps: Props, _newProps: Props) {
+  componentDidUpdate(_oldProps: Props, _newProps: Props) {
     return true;
   }
 
@@ -227,7 +231,7 @@ class Block<Props extends object, Refs extends Ref = Ref> {
   }
 
   show() {
-    this.getContent()!.style.display = "block";
+    this.getContent()!.style.display = "flex";
   }
 
   hide() {
