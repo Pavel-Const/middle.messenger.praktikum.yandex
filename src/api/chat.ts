@@ -2,6 +2,7 @@ import { HTTPTransport } from "../core/HTTPTransport.ts";
 import {
   APIError, ChatDTO, CreateChat, DeleteChat
 } from "./type";
+import { createWebSocket } from "./sockets.ts";
 
 const chatApi = new HTTPTransport("/chats");
 
@@ -24,6 +25,7 @@ export default class ChatApi {
   }): Promise<ChatDTO[] | APIError> {
     return chatApi.put("/users", { data }) as Promise<ChatDTO[] | APIError>;
   }
+
   async removeUser(data: {
     chatId: number;
     users: (number | undefined)[]
@@ -32,6 +34,6 @@ export default class ChatApi {
   }
 
   async createWS(data: { chatId: number; userId: number | undefined }): Promise<void | APIError> {
-    return chatApi.createWebSocket(data.chatId, data.userId);
+    return createWebSocket(data.chatId, data.userId);
   }
 }

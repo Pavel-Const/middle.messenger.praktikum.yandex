@@ -96,7 +96,7 @@ export class MessageHead extends Block<IProps, Refs> {
                                 onBlur=onBlur
                                 name=name
                         }}}
-                <div class="fieldTitle">Введите имя пользователя</div>
+                <div class="fieldTitle">Введите ID пользователя</div>
                 {{{ErrorValid error=error ref="error"}}}
               </div>
               {{{ Button label="Добавить" onClick=onSave}}}

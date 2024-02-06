@@ -2,14 +2,12 @@ import Block from "../../core/Block";
 import { connect } from "../../utils/connect";
 import { logout } from "../../services/auth";
 import { UserDTO } from "../../api/type.ts";
-import { initProfile } from "../../services/initApp.ts";
 class ProfilePage extends Block<{}> {
   constructor(props: UserDTO) {
     super({
       ...props,
       logout: logout
     });
-    initProfile();
   }
 
   protected render(): string {

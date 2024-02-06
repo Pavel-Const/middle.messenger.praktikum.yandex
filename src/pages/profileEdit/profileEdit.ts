@@ -5,7 +5,6 @@ import { connect } from "../../utils/connect";
 import { EditUser } from "../../api/type.ts";
 import { editProfile } from "../../services/user.ts";
 import { AppState } from "../../type.ts";
-import { initProfile } from "../../services/initApp.ts";
 
 interface Props extends Partial<AppState> {
   validate: {
@@ -54,7 +53,6 @@ export class ProfileEditPage extends Block<Props, Refs> {
         editProfile(user).catch(error => console.error(error));
       }
     });
-    initProfile();
   }
 
   protected render(): string {
@@ -76,7 +74,7 @@ export class ProfileEditPage extends Block<Props, Refs> {
               {{{ ProfileItem name="first_name" type="text" label="Имя" value=user.firstName edit="true" ref="first_name" validate=validate.names}}}
               {{{ ProfileItem name="second_name" type="text" label="Фамилия" value=user.secondName edit="true" ref="second_name" validate=validate.names}}}
               {{{ ProfileItem name="display_name" type="text" label="Имя в чате" value=user.displayName edit="true" ref="display_name" validate=validate.names}}}
-              {{{ ProfileItem name="phone" type="number" label="Телефон" value=user.phone edit="true" ref="phone" validate=validate.phone}}}
+              {{{ ProfileItem name="phone" type="text" label="Телефон" value=user.phone edit="true" ref="phone" validate=validate.phone}}}
             </ul>
             <div class="profile__actions">
                 {{{ Button label="Сохранить" className="profile__btn" onClick=onSave}}}

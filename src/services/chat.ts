@@ -35,7 +35,7 @@ const deleteChat = async (chatId: number) => {
   if (apiHasError(responseChat)) {
     throw Error(responseChat.reason);
   }
-  
+
   const chats = await getChats();
   window.store.set({ chats });
 };
@@ -56,12 +56,12 @@ const removeUserChat = async (chatId: number, userId: number | undefined) => {
   if (apiHasError(response)) {
     throw Error(response.reason);
   }
-  
+
   const responseChat = await chatApi.getChats();
   if (apiHasError(responseChat)) {
     throw Error(responseChat.reason);
   }
-  
+
   const chats = await getChats();
   window.store.set({ chats });
 };

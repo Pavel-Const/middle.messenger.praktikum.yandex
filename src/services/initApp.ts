@@ -5,28 +5,22 @@ import { getChats } from "./chat.ts";
 const router = new Router("#app");
 
 const initApp = async () => {
+  const isRoot = window.location.pathname === "/";
+  const isRegistration = window.location.pathname === "/sign-up";
   let me = null;
   try {
     me = await getUser();
   } catch (error) {
-    router.go("/");
-    return;
+    if (!isRegistration) {
+      router.go("/");
+      return;
+    }
   }
-
   const chats = await getChats();
   window.store.set({ user: me, chats });
-  router.go("/messenger");
-};
-const initProfile = async () => {
-  let me = null;
-  try {
-    me = await getUser();
-  } catch (error) {
-    console.error(error);
-    router.go("/");
-    return;
+  if (isRoot) {
+    router.go("/messenger");
   }
-  window.store.set({ user: me });
 };
 
 const initChatPage = async () => {
@@ -43,6 +37,5 @@ const initChatPage = async () => {
 
 export {
   initApp,
-  initChatPage,
-  initProfile
+  initChatPage
 };

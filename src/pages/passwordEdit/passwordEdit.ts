@@ -2,7 +2,6 @@ import Block from "../../core/Block";
 import * as validators from "../../utils/validators";
 import { ProfileItem } from "../../components";
 import { editPassword } from "../../services/user.ts";
-import { initProfile } from "../../services/initApp.ts";
 
 interface Props {
     validate: {
@@ -39,7 +38,6 @@ export class PasswordEditPage extends Block<Props, Refs> {
         }).catch(error => console.error(error));
       }
     });
-    initProfile();
   }
 
   protected render(): string {
