@@ -5,6 +5,11 @@
   "plugins": [
     "@typescript-eslint"
   ],
+  "globals": {
+    "describe": "readonly",
+    "before": "readonly",
+    "it": "readonly"
+  },
   "root": true,
   "rules": {
     "strict": "off",
