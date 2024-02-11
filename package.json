@@ -12,10 +12,10 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint",
-    "lint:fix": ".\\node_modules\\.bin\\eslint src\\**\\*.ts --fix",
+    "lint:fix": ".\\node_modules\\.bin\\eslint src\\**\\*.{ts,js} --fix",
     "style": "stylelint '**/*{.css,.scss}'",
     "style:fix": "stylelint '**/*{.css,.scss}' --fix",
-    "test": "mocha --ignore '**/*.hbs'"
+    "test": "mocha -r jsdom-global/register"
   },
   "devDependencies": {
     "@types/chai": "^4.3.9",
@@ -31,7 +31,8 @@
     "express": "^4.18.2",
     "handlebars": "4.7.8",
     "install": "^0.13.0",
-    "jsdom": "^22.1.0",
+    "jsdom": "24.0.0",
+    "jsdom-global": "3.0.2",
     "mocha": "^10.2.0",
     "mock-handlebars-loader": "^1.0.3",
     "npm": "^10.2.5",

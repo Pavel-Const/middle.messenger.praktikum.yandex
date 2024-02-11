@@ -53,7 +53,7 @@ export class RegistrationPage extends Block<Props, Refs> {
   protected render(): string {
     return (`
             <div class="formBlock">
-                {{#> Form }}
+                <form class="form">
                     <div class="formBlock__head">
                         <div class="formBlock__title">Вход</div>
                         <div class="formBlock__box">
@@ -70,7 +70,7 @@ export class RegistrationPage extends Block<Props, Refs> {
                         {{{ Button label="Зарегистрироваться" onClick=onReg}}}
                         {{{ Link label="Войти" page="/"}}}
                     </div>
-                {{/Form}}
+                </form>
             </div>
         `);
   }

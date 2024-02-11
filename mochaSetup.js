@@ -7,7 +7,9 @@ Object.entries(Components).forEach(
 );
 
 // jsdom
-const jsdom = new JSDOM("<body></body>");
+const jsdom = new JSDOM("<!doctype html><html><body></body></html>", {
+  url: "http://example.com"
+});
 
 global.window = jsdom.window;
 global.document = jsdom.window.document;

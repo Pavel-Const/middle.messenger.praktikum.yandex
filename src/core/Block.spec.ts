@@ -30,8 +30,6 @@ describe("Block", () => {
 
     PageClass = Page;
   });
-
-  // написать тест на то что комопнент создается с переданными пропсами
   it("Должен создать компонент с состоянием из конструктора", () => {
     const text = "Hello";
     const pageComponent = new PageClass({ text });
@@ -40,7 +38,6 @@ describe("Block", () => {
 
     expect(spanText).to.be.eq(text);
   });
-  // проверить что реактивность у копонента работает
   it("Компонент должен иметь реактивное повдение", () => {
     const text = "new value";
     const pageComponent = new PageClass({ text: "Hello" });
@@ -50,7 +47,6 @@ describe("Block", () => {
 
     expect(spanText).to.be.eq(text);
   });
-  // проверить что комопнент навешивает события
   it("Компонент должен установить события на элемент", () => {
     const handlerStub = sinon.stub();
     const pageComponent = new PageClass({
@@ -65,7 +61,6 @@ describe("Block", () => {
     // eslint-disable-next-line no-unused-expressions
     expect(handlerStub.calledOnce).to.be.true;
   });
-  // проверить что dispatchComponentDidMount отрабатывает когда элемент попал в дом
   it("Компонент должен вызвать dispatchComponentDidMount метод", () => {
     const clock = sinon.useFakeTimers();
     const pageComponent = new PageClass();

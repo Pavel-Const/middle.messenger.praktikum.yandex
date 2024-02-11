@@ -1,4 +1,3 @@
-import Handlebars from "handlebars";
 import * as Components from "./components";
 import { registerComponent } from "./core/registerComponent.ts";
 import Router from "./core/Router.ts";
@@ -31,8 +30,6 @@ const initState: AppState = {
   }
 };
 window.store = new Store<AppState>(initState);
-
-Handlebars.registerPartial("Form", Components.Form);
 
 registerComponent("Button", Components.Button);
 registerComponent("InputField", Components.InputField);

@@ -8,7 +8,10 @@
   "globals": {
     "describe": "readonly",
     "before": "readonly",
-    "it": "readonly"
+    "it": "readonly",
+    "afterEach": "readonly",
+    "beforeEach": "readonly",
+    "expect": "readonly"
   },
   "root": true,
   "rules": {
