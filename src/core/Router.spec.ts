@@ -14,7 +14,7 @@ describe("Router", () => {
   afterEach(() => {
     pushStateStub.restore();
   });
-  
+
   it("должен добавлять маршрут с использованием метода use", () => {
     router.use("/test", Block);
     const route = router.getRoute("/test");

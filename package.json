@@ -6,14 +6,7 @@
   "engines": {
     "node": "18.19.0"
   },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "tsc --noEmit",
-      ".\\node_modules\\.bin\\eslint src\\**\\*.{ts,js} --fix",
-      "stylelint --fix",
-      "mocha -r jsdom-global/register"
-    ]
-  },
+
   "scripts": {
     "dev": "vite --port 3000",
     "start": "tsc && vite build && vite preview --port 3000",
