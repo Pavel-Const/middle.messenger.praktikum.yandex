@@ -6,17 +6,6 @@
   "engines": {
     "node": "18.19.0"
   },
-  "scripts": {
-    "dev": "vite --port 3000",
-    "start": "tsc && vite build && vite preview --port 3000",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint",
-    "lint:fix": ".\\node_modules\\.bin\\eslint src\\**\\*.{ts,js} --fix",
-    "style": "stylelint '**/*{.css,.scss}'",
-    "style:fix": "stylelint '**/*{.css,.scss}' --fix",
-    "test": "mocha -r jsdom-global/register"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "npm run test"
@@ -29,6 +18,18 @@
       "stylelint --fix"
     ]
   },
+  "scripts": {
+    "dev": "vite --port 3000",
+    "start": "tsc && vite build && vite preview --port 3000",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint",
+    "lint:fix": ".\\node_modules\\.bin\\eslint src\\**\\*.{ts,js} --fix",
+    "style": "stylelint '**/*{.css,.scss}'",
+    "style:fix": "stylelint '**/*{.css,.scss}' --fix",
+    "test": "mocha -r jsdom-global/register"
+  },
+
   "devDependencies": {
     "@types/chai": "^4.3.9",
     "@types/mocha": "^10.0.6",
