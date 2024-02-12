@@ -6,16 +6,12 @@
   "engines": {
     "node": "18.19.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test"
-    }
-  },
   "lint-staged": {
     "*.{ts,tsx}": [
       "tsc --noEmit",
       ".\\node_modules\\.bin\\eslint src\\**\\*.{ts,js} --fix",
-      "stylelint --fix"
+      "stylelint --fix",
+      "mocha -r jsdom-global/register"
     ]
   },
   "scripts": {
@@ -27,7 +23,8 @@
     "lint:fix": ".\\node_modules\\.bin\\eslint src\\**\\*.{ts,js} --fix",
     "style": "stylelint '**/*{.css,.scss}'",
     "style:fix": "stylelint '**/*{.css,.scss}' --fix",
-    "test": "mocha -r jsdom-global/register"
+    "test": "mocha -r jsdom-global/register",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/chai": "^4.3.9",
@@ -42,7 +39,7 @@
     "eslint-plugin-import": "2.25.2",
     "express": "^4.18.2",
     "handlebars": "4.7.8",
-    "husky": "^9.0.10",
+    "husky": "^8.0.0",
     "install": "^0.13.0",
     "jsdom": "24.0.0",
     "jsdom-global": "3.0.2",
