@@ -6,7 +6,6 @@
   "engines": {
     "node": "18.19.0"
   },
-
   "scripts": {
     "dev": "vite --port 3000",
     "start": "tsc && vite build && vite preview --port 3000",
@@ -39,7 +38,6 @@
     "lint-staged": "^15.2.2",
     "mocha": "^10.2.0",
     "mock-handlebars-loader": "^1.0.3",
-    "npm": "^10.2.5",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
     "sinon": "^16.1.3",
