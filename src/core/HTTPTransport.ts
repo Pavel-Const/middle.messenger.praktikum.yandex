@@ -1,6 +1,6 @@
 import constants from "../constants";
 
-const METHODS = {
+export const METHODS = {
   GET: "GET",
   POST: "POST",
   PUT: "PUT",
@@ -13,14 +13,11 @@ interface IRequest {
   data?: any;
 }
 
-function queryStringify(data: { [key: string]: string }) {
-  if (typeof data !== "object") {
-    throw new Error("Data must be object");
-  }
-  const keys = Object.keys(data);
-  return keys.reduce((result, key, index) => {
-    return `${result}${key}=${data[key]}${index < keys.length - 1 ? "&" : ""}`;
-  }, "?");
+function queryString(data: Record<string | number, string | number | undefined>) {
+  return Object.entries(data)
+    .filter((entry): entry is [string, string | number] => entry[1] !== undefined)
+    .map(([name, value]) => `${encodeURIComponent(name)}=${encodeURIComponent(value)}`)
+    .join("&");
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -32,6 +29,13 @@ export class HTTPTransport {
   }
 
   get = (url: string, options: IRequest = {}) => {
+    const { data } = options;
+    if (data && Object.keys(data).length) {
+      const queryPart = queryString(data);
+      if (queryPart) {
+        url += "?" + queryPart;
+      }
+    }
     return this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.GET
@@ -75,7 +79,7 @@ export class HTTPTransport {
       xhr.open(
         method,
         isGet && !!data && !(data instanceof FormData)
-          ? `${url}${queryStringify(data)}`
+          ? `${url}${queryString(data)}`
           : url,
         true
       );

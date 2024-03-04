@@ -38,6 +38,10 @@ class Route {
     }
   }
 
+  getPath(): string {
+    return this._pathname;
+  }
+
   leave(): void {
     if (this._block) {
       this._block.hide();

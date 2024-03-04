@@ -1,14 +1,13 @@
 import Route from "./Route.ts";
 
 type RouteBlockConstructor = new (props?: any) => any; // Замените 'any' на более конкретный тип, соответствующий конструктору блока
-
 class Router {
   // eslint-disable-next-line no-use-before-define
   private static __instance: Router;
 
   private routes: Route[] = []; // Инициализация при объявлении
 
-  private history: History = window.history; // Можно также инициализировать здесь
+  public history: History = window.history; // Можно также инициализировать здесь
 
   private _currentRoute: Route | null = null;
 
@@ -20,7 +19,6 @@ class Router {
       return Router.__instance;
     }
     this._rootQuery = rootQuery;
-
     Router.__instance = this;
   }
 
@@ -35,7 +33,7 @@ class Router {
       const currentTarget = event.currentTarget as Window;
       this._onRoute(currentTarget.location.pathname);
     };
-    this._onRoute(window.location.pathname);
+    this._onRoute(window.location.pathname); // Вызываем _onRoute для установки текущего маршрута
   }
 
   private _onRoute(pathname: string): void {
@@ -43,13 +41,11 @@ class Router {
     if (!route) {
       return;
     }
-
     if (this._currentRoute && this._currentRoute !== route) {
       this._currentRoute.leave();
     }
-
-    this._currentRoute = route;
-    route.render(); // Удалён лишний аргумент
+    this._currentRoute = route; // Устанавливаем текущий маршрут
+    route.render();
   }
 
   go(pathname: string): void {
@@ -66,8 +62,9 @@ class Router {
   }
 
   getRoute(pathname: string): Route | undefined {
-    return this.routes.find(route => route.match(pathname));
+    // eslint-disable-next-line no-shadow
+    const route = this.routes.find(route => route.match(pathname));
+    return route;
   }
 }
-
 export default Router;

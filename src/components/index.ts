@@ -1,5 +1,4 @@
 export { default as Button } from "./buttonBlue";
-export { Form } from "./form";
 export { InputField } from "./inputField";
 export { Input } from "./input";
 export { ErrorValid } from "./errorValid";
